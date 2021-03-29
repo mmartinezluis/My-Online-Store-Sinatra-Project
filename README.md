@@ -1,1 +1,1 @@
-# My-Online-Store-Sinatra-Project
+# SellBy-Online-Store-Sinatra-Project
