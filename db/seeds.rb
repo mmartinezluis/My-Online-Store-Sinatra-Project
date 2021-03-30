@@ -4,7 +4,7 @@ mark= User.create(:username => "Mark", :email => "mark@hotmail.com", :password =
 july= User.create(:username => "July", :email => "july@hotmail.com", :password => "july")
 dave= User.create(:username => "Dave", :email => "dave@hotmail.com", :password => "dave")
 
-    iphone6= Item.create(name: "Iphone6", price: 71.28)
+    iphone6= Item.create(name: "Iphone6", price: 71.28,)
     world_languages= Item.create(name: "World Languages", price: 23.00)
 
     eraser= Item.create(name: "Eraser", price: 3.08)
@@ -19,23 +19,43 @@ dave= User.create(:username => "Dave", :email => "dave@hotmail.com", :password =
     blender= Item.create(name: "Blender", price: 35.50)
     coffe= Item.create(name: "Coffe", price: 6.90)
 
-iphone6.user_id= juan.id
-world_languages.user_id= juan.id
+# iphone6.user_id= juan.id
+# world_languages.user_id= juan.id
 
-eraser.user_id= rose.id
-notebook.user_id= rose.id
+# eraser.user_id= rose.id
+# notebook.user_id= rose.id
 
-charger.user_id= mark.id
-earphones.user_id= mark.id
+# charger.user_id= mark.id
+# earphones.user_id= mark.id
 
-chair.user_id= july.id
-desk.user_id= july.id
+# chair.user_id= july.id
+# desk.user_id= july.id
 
-blender.user_id= dave.id
-coffe.user_id= dave.id
+# blender.user_id= dave.id
+# coffe.user_id= dave.id
+
+iphone6.user= juan
+world_languages.user_id= juan
+
+eraser.user= rose
+notebook.user= rose
+
+charger.user= mark
+earphones.user= mark
+
+chair.user= july
+desk.user= july
+
+blender.user= dave
+coffe.user= dave
 
 User.all.each do |user|
   user.funds = 100.00
-  #user.cart = Cart.new
+  user.cart = Cart.new
   user.save
+end
+
+Item.all.each do |item|
+ item.status = "listing"
+ item.save
 end

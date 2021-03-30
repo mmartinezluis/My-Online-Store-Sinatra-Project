@@ -1,0 +1,13 @@
+<h1><%= @item.name %></h1><br>
+$<%= @item.price %><br>
+Stock: <%= @item.stock %>
+
+<a href="/items/<%= @item.id %>/edit" id="Edit Listing">Edit Listing</a>
+
+
+<form action="/items/<%= @item.id %>/edit" method="post">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  
+
+</form>
+

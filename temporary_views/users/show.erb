@@ -1,0 +1,28 @@
+
+
+<div class="section" id="listings">
+  <% @user.items.each do |item| %>
+    <% if item.status == "listing" %>
+      <a href="/items/<%= item.id %>"> <%= item.name %> <br> $<%= item.price %></a>
+    <% end %>
+  <% end %>
+</div>
+
+
+<div class="section" id="purchases">
+  <% @user.items.each do |item| %>
+    <% if item.status == "purchased" %>
+      <%= item.name %> <br> $<%= item.price %> 
+    <% end %>
+  <% end %>
+</div>
+
+
+<div class="section" id="">
+
+</div>
+
+
+<div class="section" id="funds">
+  Funds: <%= @user.funds %>
+</div>

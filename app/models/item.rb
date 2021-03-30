@@ -3,10 +3,10 @@ class Item < ActiveRecord::Base
   belongs_to :user
 
 
-  # def self.stock(item_name)
-  #   self.find {|item| item.name == item_name}.count
-  #   #binding.pry
-  # end
+  def stock
+    self.class.find {|item| item.name == self.name && item.user_id == current_user.id }.count
+    #binding.pry
+  end
 
 end
 

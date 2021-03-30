@@ -1,3 +1,3 @@
-class CartsControllers < ApplicationController
+class CartsController < ApplicationController
 
 end
