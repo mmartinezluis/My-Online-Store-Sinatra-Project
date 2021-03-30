@@ -36,5 +36,6 @@ coffe.user_id= dave.id
 
 User.all.each do |user|
   user.funds = 100.00
+  #user.cart = Cart.new
   user.save
 end

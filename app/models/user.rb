@@ -4,20 +4,21 @@ class User < ActiveRecord::Base
   has_one :cart
   has_secure_password
 
-  def enough_funds?
-    self.funds >= self.cart.total
-  end
+  # def enough_funds?
+  #   self.funds >= self.cart.total
+  # end
 
-  def buy
-   self.funds = self.funds - self.cart.total
-   self.cart.items.each do |item|
-    item.user_id = self.id
-   end
-  end
+  # def buy
+  #  self.funds = self.funds - self.cart.total
+  #  self.cart.items.each do |item|
+  #   item.user_id = self.id
+  #  end
+  # end
 
-  def checkout  
-    enough_funds?
-    buy
-  end
+  # def checkout  
+  #   if enough_funds?
+  #     buy
+  #   end
+  # end
 
 end
