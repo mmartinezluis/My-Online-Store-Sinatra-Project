@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-  #validates_presence_of :name, :price
+  validates_presence_of :name, :price
   belongs_to :user
 
 
