@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   #  end
   # end
 
-  # def checkout  
+  # def place_order  
   #   if enough_funds?
   #     buy
   #   end
