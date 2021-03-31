@@ -37,20 +37,20 @@ def create_users(array)
     array.each do |item_hash|
       s = Item.new
       #item_hash.each {|attribute, value| s.send(("#{attribute}="), value)}       # This method works as well
-       item_hash.each do |key, value|
+      item_hash.each do |key, value|
         s[key] = value
       end
       s.status = "listing"
       s.save
     end
-    condensed_cascade                 # This method is used in METHOD 1 of the seeding process
+    condensed_cascade                
   end
 
 def condensed_cascade
   2.times { |i|
     p= User.all[0]                      # Let p be User 1        
     pi= Item.all[i]                     # Let p1 be the first item (Item.all[0]) and let p2 be the second item (Item.all[1]).
-    pi.user = p                         # Assign User 1 to both the first item and the secon item.
+    pi.user = p                         # Assign User 1 to both the first item and the second item.
     pi.save                             # Save both items.
                                         
     q= User.all[1]
