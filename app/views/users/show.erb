@@ -1,0 +1,29 @@
+
+
+<div class="section" id="listings">
+<h1>My Listings</h1>
+<% @user.items.each do |item| %>
+  <% if item.status == "listing" %>
+    <a href="/items/<%= item.id %>"> <%= item.name %> <br> $<%= item.show_price %></a>
+  <% end %>
+<% end %>
+</div>
+
+<div class="section" id="new_listing">
+<a href="/items/new"><input type="button" value="Create New Listing"></a>
+</div>
+
+
+<div class="section" id="purchases">
+<h1>Purchases</h1>
+<% @user.items.each do |item| %>
+  <% if item.status == "purchased" %>
+    <%= item.name %><br>$<%= item.show_price %> 
+  <% end %>
+<% end %>
+</div>
+
+
+<div class="section" id="funds">
+<h1>Funds: <%= @user.show_funds %></h1>
+</div>

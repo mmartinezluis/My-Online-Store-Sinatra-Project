@@ -7,44 +7,44 @@ users_list = [
 ]
 
 items_list = [
-    {name: "Iphone6", price: 71.28},
+    {name: "iPhone6", price: 71.28},
     {name: "World Languages", price: 23.00},
-    {name: "Eraser", price: 3.08},
+    {name: "iPhone6", price: 83.08},
     {name: "Notebook", price: 1.50},
     {name: "Charger", price: 31.47},
     {name: "Earphones", price: 25.99},
     {name: "Chair", price: 40.39},
     {name: "Desk", price: 67.99},
     {name: "Blender", price: 35.50},
-    {name: "Coffe", price: 6.90}
+    {name: "Blender", price: 35.50}
 ]
 
 def create_users(array)
-    array.each do |user_hash|
-      q= User.new
-      user_hash.each {|attribute, value| q.send(("#{attribute}="), value)}        # This method can effectively handle the "password" key and "password_digest" key conflict between the Users hash and the ActiveRecord's has_secure_password macro.
-      #user_hash.each do |key, value|        # This method does not work due to conflict between the "password" key from the Users hash and the "password_digest" key from the ActiveRecord has_secure_password macro.
-        #puts "#{key}: #{value}"
-        #q[key] = value
-      #end
-      q.funds = 100.00
-      q.cart = Cart.new
-      q.save
-    end
+  array.each do |user_hash|
+    q= User.new
+    user_hash.each {|attribute, value| q.send(("#{attribute}="), value)}        # This method can effectively handle the "password" key and "password_digest" key conflict between the Users hash and the ActiveRecord's has_secure_password macro.
+    #user_hash.each do |key, value|        # This method does not work due to conflict between the "password" key from the Users hash and the "password_digest" key from the ActiveRecord has_secure_password macro.
+      #puts "#{key}: #{value}"
+      #q[key] = value
+    #end
+    q.funds = 100.00
+    q.cart = Cart.new
+    q.save
   end
+end
   
-  def create_items(array)
-    array.each do |item_hash|
-      s = Item.new
-      #item_hash.each {|attribute, value| s.send(("#{attribute}="), value)}       # This method works as well
-      item_hash.each do |key, value|
-        s[key] = value
-      end
-      s.status = "listing"
-      s.save
+def create_items(array)
+  array.each do |item_hash|
+    s = Item.new
+    #item_hash.each {|attribute, value| s.send(("#{attribute}="), value)}       # This method works as well
+    item_hash.each do |key, value|
+      s[key] = value
     end
-    condensed_cascade                
+    s.status = "listing"
+    s.save
   end
+  condensed_cascade                
+end
 
 def condensed_cascade
   2.times { |i|
@@ -75,6 +75,5 @@ def condensed_cascade
   }
 end
   
-
 create_users(users_list)
 create_items(items_list)

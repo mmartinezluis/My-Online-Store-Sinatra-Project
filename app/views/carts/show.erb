@@ -1,0 +1,25 @@
+<div class="all_items"> 
+  <% @user.cart.items.select {|}
+  <% @user.cart.items.uniq do |item| %>
+    <div class="item_box"> 
+
+      <p><%= item.name %></p><br>
+      $<%= item.show_price %><br>
+      
+      <form action="/carts/<%= item.id %>" method="post">
+        <input type="hidden" name="_method" value="patch">
+        Quantity: <input type="integer" name="quantity" value="<%= @user.cart.items.select {|i| i.name == item.name}.count %>">
+        <input type="submit" value="Update">
+      </form>
+      <form action="/carts/<%= item.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete">
+      </form>
+      <% if flash.has?(:meesage) %>
+        <%= flash[:message] %>
+      <% end %>
+
+    </div>
+</div>
+
+

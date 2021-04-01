@@ -1,0 +1,19 @@
+<% if @item.status == "listing" %>       
+
+<h1><%= @item.name %></h1><br>
+$<%= @item.show_price %><br>
+Stock: <%= @item.stock %>
+
+<a href="/items/<%= @item.id %>/edit" id="Edit Listing">Edit Listing</a>
+<a href="/items/<%= @item.id %>/edit" id="Edit Listing">Delete Listing</a>
+
+
+<form action="/items/<%= @item.id %>/edit" method="post">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+</form>
+
+<% else %>
+
+
+
+<% end %>

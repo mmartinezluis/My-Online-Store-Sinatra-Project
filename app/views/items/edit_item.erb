@@ -1,0 +1,17 @@
+
+
+<h1>Editing Listing</h1>
+<form action="/items/<%= @item.id %>" method="post">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  <label>Item Name:</label>
+  <input type="text" name="name" value="<%= @item.name %>"><br>
+  <label>Item Price:</label>
+  <input type="text" name="price" value="<%= @item.price %>"><br>
+  <label>Item Stock:</label>
+  <input type="integer" name="stock" value="<%= @item.stock %>">
+
+  <inpyt type="submit" value="Submit">
+</form><br>
+<a href="user/show"><input type="text" value="Cancel"></a>
+
+

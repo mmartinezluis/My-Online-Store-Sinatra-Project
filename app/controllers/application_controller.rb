@@ -7,7 +7,7 @@ class ApplicationController < Sinatra::Base
     use Rack::Flash
     set :session_secret, "password_security"
     set :public_folder, "public"
-    set :views, 'app/viesw'
+    set :views, 'app/views'
   end
 
   get '/' do 
@@ -19,6 +19,14 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
+    def redirect_if_not_logged_in
+      if !logged_in?
+        flash[:message] = "You must be logged in to perform this action"
+        redirect to '/login'
+        #redirect to '/login?error=You must be logged in to perform this action'
+      end
+    end
+
     def logged_in?
       !!session[:user_id]
     end
@@ -26,6 +34,7 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find(session[:user_id])
     end
+
   end
   
 end

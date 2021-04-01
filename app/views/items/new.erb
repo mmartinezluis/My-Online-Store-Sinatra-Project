@@ -1,0 +1,16 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<h1>New Listing</h1>
+<form action="/items" method="post">
+  <label>Item Name:</label>
+  <input type="text" name="name"><br><br>
+  <label>Item Price:</label>
+  <input type="text" name="price"><br><br>
+  <label>Item Stock:</label>
+  <input type="integer" name="stock"><br><br>
+
+  <input type="submit" value="Create Listing">
+</form><br>
+<a href="/users/<%= current_user.slug %>"><input type="button" value="Cancel"></a>

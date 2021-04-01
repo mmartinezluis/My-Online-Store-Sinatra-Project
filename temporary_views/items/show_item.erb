@@ -1,7 +1,7 @@
-<% if @item.status == "lsiting" %>
+<% if @item.status == "listing" %>       
 
 <h1><%= @item.name %></h1><br>
-$<%= @item.price %><br>
+$<%= @item.show_price %><br>
 Stock: <%= @item.stock %>
 
 <a href="/items/<%= @item.id %>/edit" id="Edit Listing">Edit Listing</a>

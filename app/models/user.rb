@@ -4,21 +4,28 @@ class User < ActiveRecord::Base
   has_one :cart
   has_secure_password
 
-  # def enough_funds?
-  #   self.funds >= self.cart.total
-  # end
+  include Slugifiable::Users
+  extend Slugifiable::ClassMethods
 
-  # def buy
-  #  self.funds = self.funds - self.cart.total
-  #  self.cart.items.each do |item|
-  #   item.user_id = self.id
-  #  end
-  # end
+  def show_funds
+    self.funds.to_s
+  end
 
-  # def place_order  
-  #   if enough_funds?
-  #     buy
-  #   end
-  # end
+  def enough_funds?
+    self.funds >= self.cart.total
+  end
+
+  def buy
+   self.funds = self.funds - self.cart.total
+   self.cart.items.each do |item|
+    item.user_id = self.id
+   end
+  end
+
+  def place_order  
+    if enough_funds?
+      buy
+    end
+  end
 
 end

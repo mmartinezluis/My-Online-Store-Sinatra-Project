@@ -7,6 +7,13 @@ class Cart < ActiveRecord::Base
     #binding.pry
   end
 
+  def self.no_repeat
+    no_repeat= []
+    @@items.sort do |a,b|
+      a.name <=> b.name
+    end
+  end
+
   # def self.total
   #  total = 0
   #  @@items.each do |item|
@@ -18,4 +25,4 @@ class Cart < ActiveRecord::Base
 
 end
 
- Cart.items
+ 
