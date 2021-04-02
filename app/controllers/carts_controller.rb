@@ -11,16 +11,18 @@ class CartsController < ApplicationController
 
   get '/buy/:id' do
     redirect_if_not_logged_in
+    @cart = current_user.cart
     @item= Item.find(params[:id])
-    current_user.cart.items << @item
-    @user= current_user
-    erb :'cart/show'
+    @cart.items << @item
+    @cart.save
+    redirect to "carts/#{@cart.id}"
   end
 
   get '/carts/:id' do
     redirect_if_not_logged_in
     @cart= Cart.find(params[:id])
     @user = current_user
+    cart_owner?
     @uniq_items= @cart.uniq_items
     erb :'carts/show'
   end
@@ -66,14 +68,28 @@ class CartsController < ApplicationController
     redirect_if_not_logged_in
     @user= current_user
     @cart = Cart.find(params[:id])
-    if @cart.enough_funds?
+    # if @cart.over_limit_item?
+    #   over_limit_item = @cart.over_limit_item
+    #   flash[:message] = "The seller's limit for #{over_limit_item.name} is #{over_limit_item.stock}"
+    #   redirect to "/carts/#{@cart.id}"
+    # elsif !@cart.enough_funds?
+    #   flash[:message] = "You do not have enough funds for this order"
+    #   redirect to "/carts/#{@cart.id}"
+    # else
       @cart.purchase
-      flash[:message] = "Your order was successfully processed"
+    #   flash[:message] = "Your order was successfully processed"
       redirect to "/users/#{@user.slug}"
-    else
-      flash[:message] = "You do not have enough funds for this order"
-      redirect to "/carts/#{@cart.id}"
-    end
+    # end
+  end
+
+  delete '/carts/:id' do
+    redirect_if_not_logged_in
+    @item= Item.find(params[:id])
+    @user= current_user
+    @cart= @user.cart
+    @cart.items.delete_if {|i| i.id == @item.id}
+    @cart.save
+    redirect to "/carts/#{@cart.id}"
   end
 
   helpers  do
@@ -83,6 +99,14 @@ class CartsController < ApplicationController
         redirect to "/carts/#{@cart.id}"
       end
     end
+
+    def cart_owner?
+      unless @cart.user == current_user
+        flash[:message] = "You cnat only see your own cart"
+        redirect to "/items"
+      end
+    end
+
   end
 
 end

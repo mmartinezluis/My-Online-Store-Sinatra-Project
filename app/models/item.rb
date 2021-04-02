@@ -6,8 +6,11 @@ class Item < ActiveRecord::Base
   extend Slugifiable::ClassMethods                 #Not used in this project
 
   def stock
-    #self.class.find {|item| item.name == self.name && item.user_id == current_user.id }.count
     self.user.items.select {|item| item.name == self.name && item.status == "listing" }.count     #Instance method; for a given item, find that item's user, then count the number of items in the user's items array that have the same name as the given item.
+  end
+
+  def quantity
+    self.user.items.select {|item| item.name == self.name && item.status == "purchased" }.count   
   end
 
   def show_price

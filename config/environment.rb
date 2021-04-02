@@ -1,5 +1,5 @@
 ENV['SINATRA_ENV'] ||="Development"
-
+require 'bigdecimal'
 require 'bundler/setup'
 Bundler.require(:default, ENV['SINATRA_ENV'])
 

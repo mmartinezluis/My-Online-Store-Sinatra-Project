@@ -1,11 +1,12 @@
 class User < ActiveRecord::Base
   validates_presence_of :username, :email, :password
+  has_secure_password
+  validates :username, uniqueness: true
+  
   has_many :items
   has_one :cart
-  has_secure_password
-
-  validates :username, uniqueness: true
-  validates :email, uniqueness: true
+  
+  #validates :email, uniqueness: true
 
   include Slugifiable::Users
   extend Slugifiable::ClassMethods
@@ -13,23 +14,6 @@ class User < ActiveRecord::Base
   def show_funds
     self.funds.to_s
   end
-
-  # def enough_funds?
-  #   self.funds >= self.cart.total
-  # end
-
-  # def buy
-  #  self.funds = self.funds - self.cart.total
-  #  self.cart.items.each do |item|
-  #   item.user_id = self.id
-  #  end
-  # end
-
-  # def place_order  
-  #   if enough_funds?
-  #     buy
-  #   end
-  # end
 
   def single_user_listings
     names = []

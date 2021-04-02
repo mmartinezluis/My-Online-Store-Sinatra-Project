@@ -13,7 +13,7 @@
     
   <% @user.single_user_listings.each do |item| %>
     <% if item.status == "listing" %>
-      <a href="/items/<%= item.id %>"> <%= item.name %> <br> $<%= item.show_price %></a>
+      <a href="/items/<%= item.id %>"> <%= item.name %> <br> $<%= item.show_price %></a><br>
     <% end %>
   <% end %>
 
@@ -31,7 +31,7 @@
 <h1>Purchases</h1>
 <% @user.items.each do |item| %>
   <% if item.status == "purchased" %>
-    <%= item.name %><br>$<%= item.show_price %> 
+    <%= item.name %><br>$<%= item.show_price %><br>Quantity: <%= item.quantity %><br>
   <% end %>
 <% end %>
 </div>

@@ -9,11 +9,18 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    @user= User.create(:username => params[:username], :email => params[:email], :password => params[:password])
+    @user= User.new(:username => params[:username], :email => params[:email], :password => params[:password])
     if @user.save
+      @user.funds = 100.00
+      @user.cart = Cart.new
+      @user.save
       session[:user_id] = @user.id
       redirect to '/items'
-    else
+    elsif params[:username].empty? || params[:email].empty? || params[:password].empty?
+      flash[:message] = "All fields must be completed"
+      redirect to '/signup'
+    else 
+      flash[:message] = "This username #{@user.errors[:username][0]}"
       redirect to '/signup'
     end
   end

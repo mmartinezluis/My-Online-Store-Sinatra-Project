@@ -1,5 +1,10 @@
-<div class="all_items"> 
 
+<% if @cart.items.empty? %>
+  <h3>Your cart is currently empty</h3>
+
+<% else %>
+
+<div class="all_items"> 
   <% @uniq_items.each do |item| %>
     <div class="item_box"> 
 
@@ -29,4 +34,4 @@
   </form>
 </div>
 
-
+<% end %>

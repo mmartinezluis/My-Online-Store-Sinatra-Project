@@ -1,3 +1,5 @@
+#require 'bidgdecimal'
+
 class Cart < ActiveRecord::Base
   belongs_to :user
   serialize :items, Array
@@ -39,7 +41,7 @@ class Cart < ActiveRecord::Base
   end
 
   def handle_item_subtract(params)
-    new_quantity = (-1)*new_quantity(params)
+    new_quantity = (-1) * new_quantity(params)
     new_quantity.times {
       index = self.items.index {|n| n.id == Item.find(params[:id]).id}
       self.items.slice!(index)
@@ -53,18 +55,48 @@ class Cart < ActiveRecord::Base
   end
 
   def purchase
-    self.uniq_items.each do |item|                                                  #From the cart, get an array containing items with no repetitions, and select one of such uniq items
-      seller_items = item.user.items.select {|i| i.name == item.name}               #Find the seller of my item of interest (above) and collect all of the instances of my item of interes from the seller
-      self.item_quantity(item).times {|i|                                           #Quantify the copies of my item of interest currently on my cart (that's how  many instances of that item that I want to buy)
-        seller_items[i].status = "purchased"                                        #From the seller available instances, select the first instance, mark it as purchased, and assign the instance to me. Repaet this accoding to the quantity of copies that I want to purchase
-        seller_items[i].user = self.user
-        seller_items[i].save
-      }
-    end
-    self.user.funds - self.total
+    #handle_funds
+
+    # self.uniq_items.each do |item|                                                  #From the cart, get an array containing items with no repetitions, and select one of such uniq items
+    #   seller_items = item.user.items.select {|i| i.name == item.name}               #Find the seller of my item of interest (above) and collect all of the instances of my item of interes from the seller
+    #   self.item_quantity(item).times {|i|                                           #Quantify the copies of my item of interest currently on my cart (that's how  many instances of that item that I want to buy)
+    #     seller_items[i].status = "purchased"                                        #From the seller available instances, select the first instance, mark it as purchased, and assign the instance to me. Repaet this accoding to the quantity of copies that I want to purchase
+    #     seller_items[i].user = self.user
+    #     seller_items[i].save
+    #   }
+    # end
+    #handle_funds
+    amount_charged = self.total
+    buyer= self.user
+    buyer.funds -= amount_charged
+    binding.pry
+    buyer.save
     self.items.clear
     self.save
-    self.user.save
+  end
+
+  def handle_funds
+    amount_charged = self.total
+    buyer= self.user
+    buyer.funds -= amount_charged
+    buyer.save
+    self.items.clear
+    self.save
+
+    pay_sellers
+  end
+
+  def pay_sellers
+    self.uniq_items.each do |item|
+      total = self.item_quantity(item) * item.price
+      seller= item.user
+      seller.funds += total
+      seller.save
+    end
+  end
+
+  def over_limit_item?
+    self.uniq_items.find {|item| item_quantity(item) >= item.stock} 
   end
 
   def enough_funds?
@@ -74,7 +106,8 @@ class Cart < ActiveRecord::Base
   def total
     total = 0
     self.uniq_items.each do |item|
-      total += self.item_quantity(item)*item.price
+      total = total + self.item_quantity(item) * item.price
+
     end
     total
   end
@@ -98,8 +131,16 @@ class Cart < ActiveRecord::Base
     self.items.select {|i| i.name == item.name && i.user == item.user}.count
   end
 
+  # def total
+  #   total = BigDecimal(0)
+  #   self.uniq_items.collect do |item|
+  #     #total = total + self.item_quantity(item)*item.price       #This method does not work, the total adds up to zero.
+  #     BigDecimal("#{self.item_quantity(item)}") + item.price       #This method does not work, the total adds up to zero.
+  #   end
+  #   total
+  # end
 
-
+end
 
 
 # def item_update_add(params)
@@ -115,9 +156,3 @@ class Cart < ActiveRecord::Base
 #   end
 # end
 
-
-
-
-
-
-end

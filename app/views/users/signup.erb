@@ -1,15 +1,17 @@
-
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
 
 <div id="signup_box">
 <form action="/signup" method="post">
 <h1>Sign Up</h1>
-  <label for="Useranme"></label>
+  <label for="U\useranme"></label>
   <input class="field" type="text" name="username" placeholder="Username">
 
-  <label for="meail"></label>
-  <input class="field" type="text" name="emmail" placeholder="Emmail">
+  <label for="email"></label>
+  <input class="field" type="text" name="email" placeholder="Email">
   
-  <label for="Useranme"></label>
+  <label for="password"></label>
   <input class="field" type="text" name="password" placeholder="Password">
 
   <input class="buttom" type="submit" value="Sign Up" id="signup">
