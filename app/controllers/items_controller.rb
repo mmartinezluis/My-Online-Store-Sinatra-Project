@@ -12,33 +12,26 @@ class ItemsController < ApplicationController
   end
 
   post '/items' do
-    redirect_if_not_logged_in                                                                     #First, check whether the user is logged in; if not, redirect to login
-    if Item.no_empty_params?(params)                                                                        #Sedcond, check whether all form fields are populated; if not, reaload the form
-      @item= current_user.items.find_or_create_by(name: params[:name], status: "listing")             #It might be that the user is putting info for a listing that already exiists in the user's listings
-      if params[:stock].class == "Integer" && (1..99).include?(params[:stock])                                #Third, if the stock if out of range, reload the form (incalid stock input)
-        if @item.user                                                                                     #Fourth, if the current user already has an item whose name matches the params[:name], reload the form
-          redirect to "/items/new?error= You already have a listing with that item's name"
-        else
-          @item.user = current_user
-          @item.price = params[:price]
-          @item.status = "listing"
-          @item.save
-          handle_stock
-          redirect to "/items/#{@item.id}"
-        end
-      else
-        flash[:message]= "Stock must be between 1 and 99"
-        redirect to "/items/new?error= Stock must be between 1 and 99"
-      end
+    redirect_if_not_logged_in                                                                              #Third, if the stock if out of range, reload the form (incalid stock input)
+    no_empty_params?(params)
+    valid_stock?(params)                                                                                  #First, check whether the user is logged in; if not, redirect to login                                                                                              
+    item= current_user.items.find {|item| item.name == params[:name] && item.status == "listing"}             #It might be that the user is putting info for a listing that already exiists in the user's listings                                                                               
+    if item 
+      flash[:message] = "You already have a listing with that item's name"                                                                                  #Fourth, if the current user already has an item whose name matches the params[:name], reload the form
+      redirect to "/items/new"                                                                    #Sedcond, check whether all form fields are populated; if not, reaload the form
     else
-      flash[:message]= "All fields must be completed"
-      redirect to "/items/new?error= All fields must be completed"
+      @item= Item.new(name: params[:name], price: params[:price], status: "listing")
+      @item.user = current_user
+      @item.save
+      handle_stock
+      redirect to "/items/#{@item.id}"
     end
   end
 
   get '/items/:id' do
-    @item= Items.find(params[:id])
-    if @item.status == "listing"
+    redirect_if_not_logged_in
+    @item= Item.find(params[:id])
+    if @item.status == "listing" && @item.user == current_user
       erb :'items/show_item'
     else
       erb :'items/show_item_buy'
@@ -50,59 +43,89 @@ class ItemsController < ApplicationController
     erb :'items/edit_item'
   end
 
+  patch '/items/:id' do                                      #THe logic here is a little bit complex; if a user wants to edit a listing, then the appplication has to find all of the instances of the corresponding
+    redirect_if_not_logged_in   
+    @user= current_user                            # (cont.) item in that lsiting, change the attributes of those instances using the user's params, and then make copies or delete copies of those instances if the params stock is greater or lower than the original stock.
+    @item = Item.find(params[:id])
+    no_empty_params?(params)
+    valid_stock?(params)             
+    @user.items.each do |item|
+      if item.name == @item.name && item.status == "listing"
+        item.name = params[:name]
+        item.price = params[:price]
+        item.save
+      end
+    end
+    @item= current_user.items.find {|item| item.name == params[:name] && item.status == "listing"}
+    handle_stock       
+    redirect to "/items/#{@item.id}"
+  end
+
   delete '/items/:id' do
     redirect_if_not_logged_in
     @item = Item.find(params[:id])
     if @item.user == current_user
       all_stock= @item.stock
       all_stock.times {
-        destroy_item= Item.all.find {|item| item.name == @item.name && item.user == current_user && item.status == "listing"}
+        destroy_item= current_user.items.find {|item| item.name == @item.name && item.status == "listing"}
         destroy_item.delete
       }
     end
-  end
-
-  patch 'items/:id' do
-    @item = Item.find(params[:id])
-    Item.all.select do |item|
-      if item.name == @item.name && item.user == current_user
-        item.name = params[:name]
-        item.price = params[:price]
-        item.save
-      end
-    end
-    @item= Item.all.find {|item| item.name == params[:name] && item.user_id == current_user.id}
-    handle_stock
+    redirect to "/users/#{current_user.slug}"
   end
 
 
   helpers  do
+    def no_empty_params?(params)
+      unless !params[:name].empty? && !params[:price].empty? && !params[:stock].empty?
+        if @item
+          flash[:message]= "All fields must be completed"
+          redirect to "/items/#{@item.id}/edit"
+        else
+          flash[:message]= "All fields must be completed"
+          redirect to "/items/new"
+        end
+      end
+    end
+
+    def valid_stock?(params)
+      unless (1..99).include?(params[:stock].to_i)
+        if @item
+          flash[:message]= "Stock must be between 1 and 99"
+          redirect to "/items/#{@item.id}/edit"
+        else
+          flash[:message]= "Stock must be between 1 and 99"
+          redirect to "/items/new"
+        end
+      end
+    end
+
     def handle_stock
-      if params[:stock] > @item.stock
+      if params[:stock].to_i > @item.stock
         add_items
-      elsif params[:stock] < @item.stock
+      elsif params[:stock].to_i < @item.stock
         subtract_items
       end
     end
    
-     def add_items
-        add = params[:stock] - @item.stock 
-        add.times {
-          new_item= Item.new(name: @item.name, price: @item.price, status: "listing")
-          new_item.user = current_user
-          new_item.save
-        }
-     end
-
-     def subtract_items
-        subtract = @item.stock - params[:stock]
-        subtract.times {
-          destroy_item= Item.all.find {|item| item.name == params[:name] && item.user == current_user && item.status == "listing"}
-          destroy_item.delete
-        }
-     end
-
+    def add_items
+      add = params[:stock].to_i - @item.stock 
+      add.times {
+        new_item= Item.new(name: @item.name, price: @item.price, status: "listing")
+        new_item.user = current_user
+        new_item.save
+      }
     end
+
+    def subtract_items
+      subtract = @item.stock - params[:stock].to_i
+      subtract.times {
+        destroy_item= current_user.items.find {|item| item.name == params[:name] && item.status == "listing"}
+        destroy_item.delete
+      }
+    end  
+
+  end
 
 
 end

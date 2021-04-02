@@ -1,17 +1,22 @@
 
 
+
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <h1>Editing Listing</h1>
 <form action="/items/<%= @item.id %>" method="post">
   <input type="hidden" id="hidden" name="_method" value="patch">
   <label>Item Name:</label>
-  <input type="text" name="name" value="<%= @item.name %>"><br>
+  <input type="text" name="name" value="<%= @item.name %>"><br><br>
   <label>Item Price:</label>
-  <input type="text" name="price" value="<%= @item.price %>"><br>
+  <input type="text" name="price" value="<%= @item.price %>"><br><br>
   <label>Item Stock:</label>
-  <input type="integer" name="stock" value="<%= @item.stock %>">
+  <input type="integer" name="stock" value="<%= @item.stock %>"><br><br>
 
-  <inpyt type="submit" value="Submit">
+  <input type="submit" value="Update">
 </form><br>
-<a href="user/show"><input type="text" value="Cancel"></a>
+<a href="/users/<%= current_user.slug %>"><input type="button" value="Cancel"></a>
 
 

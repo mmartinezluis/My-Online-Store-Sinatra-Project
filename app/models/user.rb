@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   has_one :cart
   has_secure_password
 
+  validates :username, uniqueness: true
+  validates :email, uniqueness: true
+
   include Slugifiable::Users
   extend Slugifiable::ClassMethods
 
@@ -27,5 +30,40 @@ class User < ActiveRecord::Base
       buy
     end
   end
+
+  def single_user_listings
+    names = []
+    listings = []
+    self.items.each do |item|  
+      if item.status == "listing"
+        names << item.name
+      end
+    end
+    uniq_items = names.uniq
+    uniq_items.count.times { |i|
+      listings << self.items.find {|item| item.name == uniq_items[i]}
+    }
+    names.clear
+    listings
+  end
+
+  def self.all_users_listings
+    names = []
+    listings = []
+    User.all.each do |user|
+      user.items.each do |item|  
+        if item.status == "listing"
+          names << item.name
+        end
+      end
+      uniq_items = names.uniq
+      uniq_items.count.times { |i|
+        listings << user.items.find {|item| item.name == uniq_items[i]}
+      }
+      names.clear
+    end
+    listings
+  end
+  
 
 end

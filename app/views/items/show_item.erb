@@ -1,19 +1,13 @@
-<% if @item.status == "listing" %>       
 
-<h1><%= @item.name %></h1><br>
+<p>Listing</p>
+<h2><%= @item.name %></h2>
 $<%= @item.show_price %><br>
-Stock: <%= @item.stock %>
+Stock: <%= @item.stock %><br><br>
 
-<a href="/items/<%= @item.id %>/edit" id="Edit Listing">Edit Listing</a>
-<a href="/items/<%= @item.id %>/edit" id="Edit Listing">Delete Listing</a>
+<a href="/items/<%= @item.id %>/edit" id="edit_listing"><input type="button" value="Edit Listing"></a>
 
-
-<form action="/items/<%= @item.id %>/edit" method="post">
-  <input type="hidden" id="hidden" name="_method" value="patch">
+<form action="/items/<%= @item.id %>" method="post">
+  <input type="hidden" id="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete" id="delete_button">
 </form>
 
-<% else %>
-
-
-
-<% end %>

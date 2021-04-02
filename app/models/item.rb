@@ -2,8 +2,8 @@ class Item < ActiveRecord::Base
   validates_presence_of :name, :price
   belongs_to :user
 
-  include Slugifiable::Items
-  extend Slugifiable::ClassMethods
+  include Slugifiable::Items                       #Not used in this project
+  extend Slugifiable::ClassMethods                 #Not used in this project
 
   def stock
     #self.class.find {|item| item.name == self.name && item.user_id == current_user.id }.count
@@ -11,11 +11,7 @@ class Item < ActiveRecord::Base
   end
 
   def show_price
-    self.price.to_s           #Changes the scientific notation number returnned by .price into a number with two decimal places within a string.
-  end
-
-  def self.no_empty_params?(params)
-    !params[:name].empty? && !params[:price].empty? && !params[:stock].empty?
+    self.price.to_s                                  #Changes the scientific notation number returnned by .price into a number with two decimal places within a string.
   end
 
 end
