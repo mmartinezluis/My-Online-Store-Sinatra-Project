@@ -14,22 +14,22 @@ class User < ActiveRecord::Base
     self.funds.to_s
   end
 
-  def enough_funds?
-    self.funds >= self.cart.total
-  end
+  # def enough_funds?
+  #   self.funds >= self.cart.total
+  # end
 
-  def buy
-   self.funds = self.funds - self.cart.total
-   self.cart.items.each do |item|
-    item.user_id = self.id
-   end
-  end
+  # def buy
+  #  self.funds = self.funds - self.cart.total
+  #  self.cart.items.each do |item|
+  #   item.user_id = self.id
+  #  end
+  # end
 
-  def place_order  
-    if enough_funds?
-      buy
-    end
-  end
+  # def place_order  
+  #   if enough_funds?
+  #     buy
+  #   end
+  # end
 
   def single_user_listings
     names = []

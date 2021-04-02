@@ -21,11 +21,12 @@
     <%= flash[:message] %>
   <% end %>
 
-    
 </div>
 
 <div class="transaction_box" id="place_order">
-  <a href="/carts/execute">Place Order</a>
+  <form action="/placeorder/<%= @cart.id %>" method="post">
+    <a href=""><input type="submit" value="Place Order"><Place Order></a>
+  </form>
 </div>
 
 

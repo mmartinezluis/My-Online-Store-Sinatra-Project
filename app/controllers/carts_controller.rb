@@ -36,24 +36,25 @@ class CartsController < ApplicationController
       redirect to "/carts/#{@cart.id}"
     else
       valid_quantity?
-      current_quantity = @cart.items.select {|i| i.name == @item.name}.count
-      new_quantity = params[:quantity].to_i - current_quantity
+      new_quantity = @cart.new_quantity(params)
+    #   current_quantity = @cart.items.select {|i| i.name == @item.name}.count
+    #   new_quantity = params[:quantity].to_i - current_quantity
       if new_quantity > 0
-        #handle_item_add_update
-        new_quantity.times {
-            @cart.items << @item
-            @cart.save
-        }
+        @cart.handle_item_add(params)
+        # new_quantity.times {
+        #     @cart.items << @item
+        #     @cart.save
+        # }
         flash[:message] = "Item quantity updated"
         redirect to "/carts/#{@cart.id}"
       elsif new_quantity < 0
-        #handle_item_add_update
-        new_quantity = current_quantity - params[:quantity].to_i
-        new_quantity.times {
-            index = @cart.items.index {|n| n.id == @item.id}
-            @cart.items.slice!(index)
-            @cart.save
-        }
+        @cart.handle_item_subtract(params)
+        # new_quantity = current_quantity - params[:quantity].to_i
+        # new_quantity.times {
+        #     index = @cart.items.index {|n| n.id == @item.id}
+        #     @cart.items.slice!(index)
+        #     @cart.save
+        # }
         flash[:message] = "Item quantity updated"
         redirect to "/carts/#{@cart.id}"
       end
@@ -61,8 +62,21 @@ class CartsController < ApplicationController
     end
   end
 
+  post '/placeorder/:id' do
+    redirect_if_not_logged_in
+    @user= current_user
+    @cart = Cart.find(params[:id])
+    if @cart.enough_funds?
+      @cart.purchase
+      flash[:message] = "Your order was successfully processed"
+      redirect to "/users/#{@user.slug}"
+    else
+      flash[:message] = "You do not have enough funds for this order"
+      redirect to "/carts/#{@cart.id}"
+    end
+  end
 
-  def helpers
+  helpers  do
     def valid_quantity?
       unless params[:quantity].to_i > 0
         flash[:message] = "Item quantity must be greater than 0"
