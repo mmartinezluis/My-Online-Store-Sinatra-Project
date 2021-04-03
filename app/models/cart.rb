@@ -1,37 +1,6 @@
-#require 'bidgdecimal'
-
 class Cart < ActiveRecord::Base
   belongs_to :user
   serialize :items, Array
-
-  # def self.no_repeat
-  #   no_repeat= []
-  #   @@items.sort do |a,b|
-  #     a.name <=> b.name
-  #   end
-  # end
-
-  # def self.total
-  #  total = 0
-  #  @@items.each do |item|
-  #   total += item.price
-  #  end
-  #  total
-  #  binding.pry
-  # end
-
-
-
-
-
-  # def handle_quantity(params)
-  #   new_quanitty = new_quantity(params)
-  #   if new_quantity > 0
-  #     handle_item_add(params)
-  #   elsif new_quanitty < 0
-  #     handle_item_subtract(params)
-  #   end
-  # end
 
   def handle_item_add(params)
     new_quantity(params).times {
@@ -55,22 +24,18 @@ class Cart < ActiveRecord::Base
   end
 
   def purchase
-    #handle_funds
-
-    # self.uniq_items.each do |item|                                                  #From the cart, get an array containing items with no repetitions, and select one of such uniq items
-    #   seller_items = item.user.items.select {|i| i.name == item.name}               #Find the seller of my item of interest (above) and collect all of the instances of my item of interes from the seller
-    #   self.item_quantity(item).times {|i|                                           #Quantify the copies of my item of interest currently on my cart (that's how  many instances of that item that I want to buy)
-    #     seller_items[i].status = "purchased"                                        #From the seller available instances, select the first instance, mark it as purchased, and assign the instance to me. Repaet this accoding to the quantity of copies that I want to purchase
-    #     seller_items[i].user = self.user
-    #     seller_items[i].save
-    #   }
-    # end
-    #handle_funds
-    amount_charged = self.total
-    buyer= self.user
-    buyer.funds -= amount_charged
-    binding.pry
-    buyer.save
+    #Debit the buyer and pay the seller(s)
+    handle_funds
+    #AFind the seller items to be purchased and assign those items' user_id to the buyer's user_id
+    self.uniq_items.each do |item|                                                  #From the cart, get an array containing items with no repetitions, and select one of such uniq items
+      seller_items = item.user.items.select {|i| i.name == item.name}               #Find the seller of my item of interest (above) and collect all of the instances of my item of interes from the seller
+      self.item_quantity(item).times {|i|                                           #Quantify the copies of my item of interest currently on my cart (that's how  many instances of that item that I want to buy)
+        seller_items[i].status = "purchased"                                        #From the seller available instances, select the first instance, mark it as purchased, and assign the instance to me. Repaet this accoding to the quantity of copies that I want to purchase
+        seller_items[i].user = self.user
+        seller_items[i].save
+      }
+    end
+    #Empty the cart and save it
     self.items.clear
     self.save
   end
@@ -80,9 +45,6 @@ class Cart < ActiveRecord::Base
     buyer= self.user
     buyer.funds -= amount_charged
     buyer.save
-    self.items.clear
-    self.save
-
     pay_sellers
   end
 
@@ -96,7 +58,7 @@ class Cart < ActiveRecord::Base
   end
 
   def over_limit_item?
-    self.uniq_items.find {|item| item_quantity(item) >= item.stock} 
+    self.uniq_items.find {|item| item_quantity(item) > item.stock} 
   end
 
   def enough_funds?
@@ -106,8 +68,7 @@ class Cart < ActiveRecord::Base
   def total
     total = 0
     self.uniq_items.each do |item|
-      total = total + self.item_quantity(item) * item.price
-
+      total += self.item_quantity(item) * item.price
     end
     total
   end
@@ -131,28 +92,5 @@ class Cart < ActiveRecord::Base
     self.items.select {|i| i.name == item.name && i.user == item.user}.count
   end
 
-  # def total
-  #   total = BigDecimal(0)
-  #   self.uniq_items.collect do |item|
-  #     #total = total + self.item_quantity(item)*item.price       #This method does not work, the total adds up to zero.
-  #     BigDecimal("#{self.item_quantity(item)}") + item.price       #This method does not work, the total adds up to zero.
-  #   end
-  #   total
-  # end
-
 end
-
-
-# def item_update_add(params)
-#   current_quantity = item_quantity(params)
-#   new_quantity = param[:quantity] - current_quantity
-#   if new_quantity > 0
-#     seller_item_ids= @item.user.items.select {|i| i.name == @item.name && i.status == "listing"}.ids
-#     user_item_ids= @user.cart.items.select {|i| i.name == @item.name}.ids
-#     options_ids = seller_item_ids.difference(user_item_ids)
-#     new_quantity.times{ |i|
-#         @user.cart.items << Item.find(options_ids[i])
-#     }
-#   end
-# end
 

@@ -43,13 +43,13 @@ class ItemsController < ApplicationController
     erb :'items/edit_item'
   end
 
-  patch '/items/:id' do                                      #THe logic here is a little bit complex; if a user wants to edit a listing, then the appplication has to find all of the instances of the corresponding
-    redirect_if_not_logged_in   
-    @user= current_user                            # (cont.) item in that lsiting, change the attributes of those instances using the user's params, and then make copies or delete copies of those instances if the params stock is greater or lower than the original stock.
+  patch '/items/:id' do                           #THe logic here is a little bit complex; if a user wants to edit a listing, the the appplication has to find all of the instances of the corresponding                       
+    redirect_if_not_logged_in                     # (cont.) item in that listing, change the attributes of those instances using the user's params, and then make copies or delete copies of those instances if the params stock is greater or lower than the original stock.
+    @user= current_user                            
     @item = Item.find(params[:id])
     no_empty_params?(params)
-    valid_stock?(params)             
-    @user.items.each do |item|
+    valid_stock?(params) 
+    @user.items.collect do |item|
       if item.name == @item.name && item.status == "listing"
         item.name = params[:name]
         item.price = params[:price]
@@ -57,7 +57,8 @@ class ItemsController < ApplicationController
       end
     end
     @item= current_user.items.find {|item| item.name == params[:name] && item.status == "listing"}
-    handle_stock       
+    handle_stock
+    @item= current_user.items.find {|item| item.name == params[:name] && item.status == "listing"}
     redirect to "/items/#{@item.id}"
   end
 
@@ -124,7 +125,7 @@ class ItemsController < ApplicationController
         destroy_item.delete
       }
     end  
-
+    
   end
 
 

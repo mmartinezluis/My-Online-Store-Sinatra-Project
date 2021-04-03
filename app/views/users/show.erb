@@ -29,7 +29,7 @@
 
 <div class="section" id="purchases">
 <h1>Purchases</h1>
-<% @user.items.each do |item| %>
+<% @user.single_user_purchases.each do |item| %>
   <% if item.status == "purchased" %>
     <%= item.name %><br>$<%= item.show_price %><br>Quantity: <%= item.quantity %><br>
   <% end %>
