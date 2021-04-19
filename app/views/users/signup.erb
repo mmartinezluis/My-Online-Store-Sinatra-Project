@@ -1,18 +1,16 @@
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-<% end %>
+<%= erb :'partials/error' %>
 
 <div id="signup_box">
-<form action="/signup" method="post">
 <h1>Sign Up</h1>
-  <label for="U\useranme"></label>
-  <input class="field" type="text" name="username" placeholder="Username">
+<form action="/signup" method="post">
+  <label for="useranme"></label>
+  <input class="field" type="text" name="username" placeholder="Username" id="username">
 
   <label for="email"></label>
-  <input class="field" type="text" name="email" placeholder="Email">
+  <input class="field" type="text" name="email" placeholder="Email" id="meail">
   
   <label for="password"></label>
-  <input class="field" type="text" name="password" placeholder="Password">
+  <input class="field" type="text" name="password" placeholder="Password" id="password">
 
   <input class="buttom" type="submit" value="Sign Up" id="signup">
 </form>

@@ -1,9 +1,8 @@
 <h1>SellBy</h1>
-<p>Sell and buy items</p>
 
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-<% end %>
+<h3>Sell and buy items</h3>
+
+<%= erb :'partials/error' %>
 
 <div id="login_box">
   <form action="/login" method="post">
@@ -11,10 +10,10 @@
     <input type="text" name="username" placeholder="Username">
     <label for="Useranme"></label>
     <input type="text" name="password" placeholder="Password">
-
     <input class="buttom" type="submit" value="Log In" id="login">
   </form>
-  <br>
-  <a href="/signup"><input class="buttom" type="submit" value="Create New Account" id="new_account">
 </div>
+<br>
+<a href="/signup"><input class="buttom" type="submit" value="Create New Account" id="new_account">
+
     

@@ -1,5 +1,4 @@
 
-
 <div class="section" id="listings">
 
 <h1>My Listings</h1>
@@ -13,7 +12,10 @@
     
   <% @user.single_user_listings.each do |item| %>
     <% if item.status == "listing" %>
-      <a href="/items/<%= item.id %>"> <%= item.name %> <br> $<%= item.show_price %></a><br>
+      <a href="/items/<%= item.id %>"> 
+        <%= item.name %><br> $<%= item.show_price %>
+      </a>
+      <br>
     <% end %>
   <% end %>
 

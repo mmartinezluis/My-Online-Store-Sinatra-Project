@@ -1,7 +1,6 @@
 require './config/environment'
 require 'rack-flash'
 class ApplicationController < Sinatra::Base
-
   configure do
     enable :sessions
     use Rack::Flash
@@ -18,12 +17,12 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  # Application wide helpers
   helpers do
     def redirect_if_not_logged_in
       if !logged_in?
         flash[:message] = "You must be logged in to perform this action"
         redirect to '/login'
-        #redirect to '/login?error=You must be logged in to perform this action'
       end
     end
 
@@ -34,7 +33,6 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find(session[:user_id])
     end
-
   end
   
 end
