@@ -24,18 +24,18 @@ class Cart < ActiveRecord::Base
   end
 
   def purchase
-    #Debit the buyer and pay the seller(s)
+    # Debit the buyer and pay the seller(s)
     handle_funds
-    #AFind the seller items to be purchased and assign those items' user_id to the buyer's user_id
+    # AFind the seller items to be purchased and assign those items' user_id to the buyer's user_id
     self.uniq_items.each do |item|                                                  #From the cart, get an array containing items with no repetitions, and select one of such uniq items
       seller_items = item.user.items.select {|i| i.name == item.name}               #Find the seller of my item of interest (above) and collect all of the instances of my item of interes from the seller
       self.item_quantity(item).times {|i|                                           #Quantify the copies of my item of interest currently on my cart (that's how  many instances of that item that I want to buy)
-        seller_items[i].status = "purchased"                                        #From the seller available instances, select the first instance, mark it as purchased, and assign the instance to me. Repaet this accoding to the quantity of copies that I want to purchase
+        seller_items[i].status = "purchased"                                        #From the seller available instances, select the first instance, mark it as purchased, and assign the instance to me. Repaat this accoding to the quantity of copies that I want to purchase
         seller_items[i].user = self.user
         seller_items[i].save
       }
     end
-    #Empty the cart and save it
+    # Empty the cart and save it
     self.items.clear
     self.save
   end
@@ -74,18 +74,7 @@ class Cart < ActiveRecord::Base
   end
 
   def uniq_items
-    ids = []
-    uniq_items = []
-    array= self.items
-    array.sort.each do |item|
-      ids << item.id
-    end
-    uniq_ids= ids.uniq
-    uniq_ids.each do |id|
-      uniq_items << Item.find(id)
-    end
-    ids.clear
-    uniq_items
+    self.items.uniq
   end
 
   def item_quantity(item)

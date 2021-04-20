@@ -33,6 +33,18 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find(session[:user_id])
     end
+
+    def authorized_action?
+      if current_user.slug != User.find_by_slug(params[:slug])
+        flash[:message] = ["You can only see your own account"]
+        redirect_to "/users/#{current_user.slug}"
+
+      # elsif current_user.cart.id != params(]:id)
+      #   flash[:message] = ["You can only see your own cart"]
+      #   redirect_to "/carts/#{current_user.cart.id}"
+      end
+    end
   end
   
 end
+
