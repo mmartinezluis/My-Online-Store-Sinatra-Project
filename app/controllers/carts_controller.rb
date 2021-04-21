@@ -22,7 +22,7 @@ class CartsController < ApplicationController
     redirect_if_not_logged_in
     @cart= Cart.find(params[:id])
     @user = current_user
-    authorized_cart_view?
+    authorized_cart_view?                 # Defined in applciation controller
     @uniq_items= @cart.uniq_items
     erb :'carts/show'
   end
@@ -34,19 +34,17 @@ class CartsController < ApplicationController
     @cart = current_user.cart
     limit = @item.stock
     if params[:quantity].to_i > limit
-      flash[:message] = "The seller's limit is #{limit}"
+      flash[:message] = ["The seller's limit for #{@item.name} is #{limit}"]
       redirect to "/carts/#{@cart.id}"
     else
       valid_quantity?
-      new_quantity = @cart.new_quantity(params)
+      new_quantity = params[:quantity].to_i - @cart.current_quantity(@item)
       if new_quantity > 0
-        @cart.handle_item_add(params)
-        flash[:message] = "Item quantity updated"
-        redirect to "/carts/#{@cart.id}"
+        @cart.handle_item_add(new_quantity, @item)
+        flash[:message] = ["Item quantity updated"]
       elsif new_quantity < 0
-        @cart.handle_item_subtract(params)
-        flash[:message] = "Item quantity updated"
-        redirect to "/carts/#{@cart.id}"
+        @cart.handle_item_subtract(new_quantity, @item)
+        flash[:message] = ["Item quantity updated"]
       end
       redirect to "/carts/#{@cart.id}"
     end
@@ -58,14 +56,14 @@ class CartsController < ApplicationController
     @cart = Cart.find(params[:id])
     if @cart.over_limit_item?
       over_limit_item = @cart.over_limit_item?
-      flash[:message] = "The seller's limit for #{over_limit_item.name} is #{over_limit_item.stock}"
+      flash[:message] = ["The seller's limit for #{over_limit_item.name} is #{over_limit_item.stock}"]
       redirect to "/carts/#{@cart.id}"
     elsif !@cart.enough_funds?
-      flash[:message] = "You do not have enough funds for this order"
+      flash[:message] = ["You do not have enough funds for this order"]
       redirect to "/carts/#{@cart.id}"
     else
       @cart.purchase
-      flash[:message] = "Your order was successfully processed"
+      flash[:message] = ["Your order was successfully processed"]
       redirect to "/users/#{@user.slug}"
     end
   end
@@ -83,14 +81,14 @@ class CartsController < ApplicationController
   helpers  do
     def valid_quantity?
       unless params[:quantity].to_i > 0
-        flash[:message] = "Item quantity must be greater than 0"
+        flash[:message] = ["Item quantity must be greater than 0"]
         redirect to "/carts/#{@cart.id}"
       end
     end
 
     def cart_owner?
       unless @cart.user == current_user
-        flash[:message] = "You cnat only see your own cart"
+        flash[:message] = ["You can only see your own cart"]
         redirect to "/items"
       end
     end

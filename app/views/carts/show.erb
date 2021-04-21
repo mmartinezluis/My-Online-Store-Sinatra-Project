@@ -1,39 +1,31 @@
 <%= erb :'partials/error' %>
 
-
 <% if @cart.items.empty? %>
   <h3>Your cart is currently empty</h3>
-
 <% else %>
-
-<div class="all_items"> 
-  <% @uniq_items.each do |item| %>
-    <div class="item_box"> 
-
-      <%= item.name %></p><br>
-      $<%= item.show_price %><br>
-      <form action="/carts/<%= item.id %>" method="post">
-        <input type="hidden" name="_method" value="patch">
-        Quantity: <input type="integer" name="quantity" value="<%= @user.cart.items.select {|i| i.name == item.name}.count %>">
-        <input type="submit" value="Update">
-      </form>
-      <form action="/carts/<%= item.id %>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="Delete Item">
-      </form>
-   
+  <div class="all_items_box"> 
+    <% @uniq_items.each do |item| %>
+      <div class="item_box"> 
+        <%= item.name %></p><br>
+        <%= item.show_price %><br>
+        <form action="/carts/<%= item.id %>" method="post">
+          <input type="hidden" name="_method" value="patch">
+          Quantity: <input type="integer" name="quantity" value="<%= @user.cart.items.select {|i| i.name == item.name}.count %>">
+          <input type="submit" value="Update">
+        </form>
+        <form action="/carts/<%= item.id %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Delete Item">
+        </form>
       </div>
-  <% end %>
-  <% if flash.has?(:meesage) %>
-    <%= flash[:message] %>
-  <% end %>
-
-</div>
+    <% end %>
+  </div>
+<% end %>
 
 <div class="transaction_box" id="place_order">
   <form action="/placeorder/<%= @cart.id %>" method="post">
-    <a href=""><input type="submit" value="Place Order"><Place Order></a>
+    <input type="submit" value="Place Order">
   </form>
 </div>
 
-<% end %>
+

@@ -29,8 +29,7 @@ class ItemsController < ApplicationController
       @item= Item.new(name: params[:name], price: params[:price], status: "listing")
       @item.user = current_user
       @item.save
-      stock = params[:stock]
-      @item.handle_stock(stock)
+      @item.handle_stock(params[:stock])
       redirect to "/items/#{@item.id}"
     end
   end
@@ -51,21 +50,18 @@ class ItemsController < ApplicationController
   end
 
   patch '/items/:id' do                           #THe logic here is a little bit complex; if a user wants to edit a listing, the the appplication has to find all of the instances of the corresponding                       
-    redirect_if_not_logged_in                     # (cont.) item in that listing, change the attributes of those instances using the user's params, and then make copies or delete copies of those instances if the params stock is greater or lower than the original stock.
-    @user= current_user                            
+    redirect_if_not_logged_in                     # (cont.) item in that listing, change the attributes of those instances using the user's params, and then make copies or delete copies of those instances if the params stock is greater or lower than the original stock.                           
     @item = Item.find(params[:id])
     no_empty_params?
     valid_stock?
-    @user.items.collect do |item|
-      if item.name == @item.name && item.status == "listing"
-        item.name = params[:name]
-        item.price = params[:price]
-        item.save
-      end
+    @item.all_stock.each do |item|
+      item.name = params[:name]
+      item.price = params[:price]
+      item.save
     end
-    @item= current_user.items.find {|item| item.name == params[:name] && item.status == "listing"}
-    handle_stock
-    @item= current_user.items.find {|item| item.name == params[:name] && item.status == "listing"}
+    @item = current_user.items.find_by(name: params[:name], status:"listing")
+    @item.handle_stock(params[:stock])
+    @item = current_user.items.find_by(name: params[:name], status:"listing")
     redirect to "/items/#{@item.id}"
   end
 
@@ -73,11 +69,9 @@ class ItemsController < ApplicationController
     redirect_if_not_logged_in
     @item = Item.find(params[:id])
     if @item.user == current_user
-      all_stock= @item.stock
-      all_stock.times {
-        destroy_item= current_user.items.find {|item| item.name == @item.name && item.status == "listing"}
-        destroy_item.delete
-      }
+      @item.all_stock.each do |item|
+        item.delete
+      end
     end
     redirect to "/users/#{current_user.slug}"
   end
@@ -110,34 +104,7 @@ class ItemsController < ApplicationController
 
     def item_already_exists?
       current_user.items.find_by(name: params[:name], status: "listing")
-    end
-
-    def handle_stock
-      if params[:stock].to_i > @item.stock
-        add_items
-      elsif params[:stock].to_i < @item.stock
-        subtract_items
-      end
-    end
-   
-    def add_items
-      add = params[:stock].to_i - @item.stock 
-      add.times {
-        new_item= Item.new(name: @item.name, price: @item.price, status: "listing")
-        new_item.user = current_user
-        new_item.save
-      }
-    end
-
-    def subtract_items
-      subtract = @item.stock - params[:stock].to_i
-      subtract.times {
-        destroy_item= current_user.items.find {|item| item.name == params[:name] && item.status == "listing"}
-        destroy_item.delete
-      }
-    end  
-    
+    end    
   end
-
 
 end
