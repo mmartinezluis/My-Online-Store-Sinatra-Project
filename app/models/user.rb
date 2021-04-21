@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
     User.all.collect do |user|
       user.listings
     end.flatten
-  end
-  
+  end  
 
 end

@@ -34,14 +34,23 @@ class ApplicationController < Sinatra::Base
       User.find(session[:user_id])
     end
 
-    def authorized_action?
-      if current_user.slug != User.find_by_slug(params[:slug])
+    def authorized_user_view?
+      request = User.find_by_slug(params[:slug])
+      if request != nil && current_user != request
         flash[:message] = ["You can only see your own account"]
-        redirect_to "/users/#{current_user.slug}"
+        redirect to "/users/#{current_user.slug}"
+      elsif request == nil
+        not_found                 # Renders a 404 error page
+      end
+    end
 
-      # elsif current_user.cart.id != params(]:id)
-      #   flash[:message] = ["You can only see your own cart"]
-      #   redirect_to "/carts/#{current_user.cart.id}"
+    def authorized_cart_view?
+      request = Cart.find(params[:id])
+      if request != nil && current_user.cart != request
+        flash[:message] = ["You can only see your own cart"]
+        redirect to "/carts/#{current_user.cart.id}"
+      elsif request == nil
+        not_found                 # Renders a 404 error page
       end
     end
   end

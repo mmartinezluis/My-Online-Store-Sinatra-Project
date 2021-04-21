@@ -22,7 +22,7 @@ class CartsController < ApplicationController
     redirect_if_not_logged_in
     @cart= Cart.find(params[:id])
     @user = current_user
-    cart_owner?
+    authorized_cart_view?
     @uniq_items= @cart.uniq_items
     erb :'carts/show'
   end

@@ -17,5 +17,30 @@ class Item < ActiveRecord::Base
     self.price.to_s                                  # Changes the scientific notation number returnned by .price into a number with two decimal places within a string.
   end
 
+  def handle_stock(stock)
+    if stock.to_i > self.stock
+      add_items(stock)
+    elsif stock.to_i < self.stock
+      subtract_items
+    end
+  end
+ 
+  def add_items(stock)
+    add = stock.to_i - self.stock 
+    add.times {
+      new_item = Item.new(name: self.name, price: self.price, status: "listing")
+      new_item.user = self.user
+      new_item.save
+    }
+  end
+
+  def subtract_items(stock)
+    subtract = self.stock - stock.to_i
+    subtract.times {
+      destroy_item = self.user.items.find_by(name: self.name, status: "listing")
+      destroy_item.delete
+    }
+  end  
+
 end
 

@@ -1,6 +1,4 @@
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-<% end %>
+<%= erb :'partials/error' %>
 
 <h1>New Listing</h1>
 <form action="/items" method="post">
