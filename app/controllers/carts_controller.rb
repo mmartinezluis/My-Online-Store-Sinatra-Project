@@ -85,13 +85,6 @@ class CartsController < ApplicationController
         redirect to "/carts/#{@cart.id}"
       end
     end
-
-    def cart_owner?
-      unless @cart.user == current_user
-        flash[:message] = ["You can only see your own cart"]
-        redirect to "/items"
-      end
-    end
   end
 
 end

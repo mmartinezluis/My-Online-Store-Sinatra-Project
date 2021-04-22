@@ -4,9 +4,9 @@
   <div>
   <% if item.status == "listing" %>
     <% if item.user == current_user %>
-      <%= item.name %><br>$ <%= item.show_price %><br>Seller: <%= item.user.username %><br>Stock: <%= item.stock %><br>
+      <%= item.name %><br><%= item.show_price %><br>Seller: <%= item.user.username %><br>Stock: <%= item.stock %><br>
     <% else %>
-      <a href="/items/<%= item.id %>"><%= item.name %><br>$ <%= item.show_price %><br>Seller: <%= item.user.username %><br>Stock: <%= item.stock %></a><br>   
+      <a href="/items/<%= item.id %>"><%= item.name %><br><%= item.show_price %><br>Seller: <%= item.user.username %><br>Stock: <%= item.stock %></a><br>   
     <% end %>
   <% end %>
   </div>
