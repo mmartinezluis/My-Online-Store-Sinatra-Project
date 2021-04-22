@@ -1,35 +1,31 @@
-
 <%= erb :'partials/error' %>
 
 <div class="section" id="listings">
-<h1>My Listings</h1>
-<% if @user.listings == nil  %>
- <%= puts "#{You currently have no listings}" %>
-<% else %>
-  <% @user.listings.each do |item| %>
-    <% if item.status == "listing" %>
-      <a href="/items/<%= item.id %>"> 
-        <%= item.name %><br> $<%= item.show_price %>
-      </a>
-      <br>
+  <h1>My Listings</h1>
+  <% if @user.listings == nil  %>
+    <p>You currently have no listings</p>
+  <% else %>
+    <% @user.listings.each do |item| %>
+      <% if item.status == "listing" %>
+        <a href="/items/<%= item.id %>"><%= item.name %><br> $<%= item.show_price %></a><br>
+      <% end %>
     <% end %>
-  <% end %>
   <% end %>
 </div>
 
 <div class="section" id="new_listing">
-<a href="/items/new"><input type="button" value="Create New Listing"></a>
+  <a href="/items/new"><input type="button" value="Create New Listing"></a>
 </div>
 
 <div class="section" id="purchases">
-<h1>Purchases</h1>
-<% @user.purchases.each do |item| %>
-  <% if item.status == "purchased" %>
-    <%= item.name %><br><%= item.show_price %><br>Quantity: <%= item.quantity_purchased %><br>
+  <h1>Purchases</h1>
+  <% @user.purchases.each do |item| %>
+    <% if item.status == "purchased" %>
+      <%= item.name %><br><%= item.show_price %><br>Quantity: <%= item.quantity_purchased %><br>
+    <% end %>
   <% end %>
-<% end %>
 </div>
 
 <div class="section" id="funds">
-<h1>Funds: <%= @user.show_funds %></h1>
+  <h1>Funds: <%= @user.show_funds %></h1>
 </div>

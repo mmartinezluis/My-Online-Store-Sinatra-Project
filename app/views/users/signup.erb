@@ -1,17 +1,17 @@
 <%= erb :'partials/error' %>
 
-<div id="signup_box">
-<h1>Sign Up</h1>
-<form action="/signup" method="post">
-  <label for="useranme"></label>
-  <input class="field" type="text" name="username" placeholder="Username" id="username">
+<div class="form" id="sign_up">
+  <h1>Sign Up</h1>
+  <form action="/signup" method="post">
+    <label for="useranme"></label>
+    <input class="field" type="text" name="username" placeholder="Username" id="username">
 
-  <label for="email"></label>
-  <input class="field" type="text" name="email" placeholder="Email" id="meail">
-  
-  <label for="password"></label>
-  <input class="field" type="text" name="password" placeholder="Password" id="password">
+    <label for="email"></label>
+    <input class="field" type="text" name="email" placeholder="Email" id="meail">
+    
+    <label for="password"></label>
+    <input class="field" type="text" name="password" placeholder="Password" id="password">
 
-  <input class="buttom" type="submit" value="Sign Up" id="signup">
-</form>
+    <input class="buttom" type="submit" value="Sign Up" id="signup">
+  </form>
 </div>

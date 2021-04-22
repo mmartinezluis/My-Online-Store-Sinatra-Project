@@ -1,13 +1,12 @@
-
 <h1>Listings</h1>
 <% User.all_users_listings.each do |item| %>
-  <div>
-  <% if item.status == "listing" %>
-    <% if item.user == current_user %>
-      <%= item.name %><br><%= item.show_price %><br>Seller: <%= item.user.username %><br>Stock: <%= item.stock %><br>
-    <% else %>
-      <a href="/items/<%= item.id %>"><%= item.name %><br><%= item.show_price %><br>Seller: <%= item.user.username %><br>Stock: <%= item.stock %></a><br>   
+  <div class="ittem_box">
+    <% if item.status == "listing" %>
+      <% if item.user == current_user %>
+        <%= item.name %><br><%= item.show_price %><br>Seller: <%= item.user.username %><br>Stock: <%= item.stock %><br>
+      <% else %>
+        <a href="/items/<%= item.id %>"><%= item.name %><br><%= item.show_price %><br>Seller: <%= item.user.username %><br>Stock: <%= item.stock %></a><br>   
+      <% end %>
     <% end %>
-  <% end %>
   </div>
 <% end %>

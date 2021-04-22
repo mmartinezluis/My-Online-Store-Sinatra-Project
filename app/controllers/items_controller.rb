@@ -37,11 +37,12 @@ class ItemsController < ApplicationController
   get '/items/:id' do
     redirect_if_not_logged_in
     @item= Item.find(params[:id])
-    if @item.status == "listing" && @item.user == current_user
-      erb :'items/show_item'
-    else
-      erb :'items/show_item_buy'
-    end
+    #if @item.status == "listing" && @item.user == current_user
+    #   erb :'items/show_item'
+    # else
+    #   erb :'items/show_item_buy'
+    # end
+    erb :'items/show_item'
   end
 
   get '/items/:id/edit' do

@@ -23,9 +23,11 @@
 <% end %>
 
 <div class="transaction_box" id="place_order">
-  <form action="/placeorder/<%= @cart.id %>" method="post">
-    <input type="submit" value="Place Order">
-  </form>
+  <% unless @cart.items.empty? %>
+    <form action="/placeorder/<%= @cart.id %>" method="post">
+      <input type="submit" value="Place Order">
+    </form>
+  <% end %>
 </div>
 
 

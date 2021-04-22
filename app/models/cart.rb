@@ -27,7 +27,7 @@ class Cart < ActiveRecord::Base
     handle_funds
     # Find the seller items to be purchased and assign those items' user_id to the buyer's user_id
     self.uniq_items.each do |item|                                                  #From the cart, get an array containing items with no repetitions, and select one of such uniq items
-      seller_items = item.all_stock      
+      seller_items = item.all_stock                                       # Load all of the seller's instances of this item 
       quantity_to_buy = self.current_quantity(item)                                          #Find the seller of my item of interest (above) and collect all of the instances of my item of interes from the seller
       quantity_to_buy.times {|i|                                           #Quantify the copies of my item of interest currently on my cart (that's how  many instances of that item that I want to buy)
         seller_items[i].status = "purchased"                                        #From the seller available instances, select the first instance, mark it as purchased, and assign the instance to me. Repaat this accoding to the quantity of copies that I want to purchase
