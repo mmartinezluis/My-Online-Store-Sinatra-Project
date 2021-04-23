@@ -10,6 +10,7 @@
     </form>
   </div>
 <% else %>
+<% erb :'partials/error' %>
   <div class="item_boxr">
     <%= erb :'items/partials/show' %><br>
     <a href="/add_item/<%= @item.id %>" id="add_item_link">Add to Cart</a><br>

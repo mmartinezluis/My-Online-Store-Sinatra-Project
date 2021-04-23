@@ -1,0 +1,54 @@
+/* Custom properties/variables  */
+:root {
+  --main-white: #f0f0f0;
+  --main-red: #be3144;
+  --main-blue: #45567d;
+  --main-gray: #303841;
+}
+
+BODY {
+  font-size: 1.4rem;
+}
+
+.container {
+  padding: 10px 10px 10px 10px;
+}
+
+/* NAVIGATION BAR styliing */
+.nav {  
+  /* make the nav container a flex box */
+  display: flex;
+  /* let all elements inside nav bar fill the full space horizontally */
+  justify-content:space-evenly;
+  /* let the nav bar stay on the same place when scrolling the page */
+  position: fixed;
+  /* let the nav bar be centralized horizontally across the page */
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* let the elements insde the nav bar be 10px awaay from the nav bar borders on all sides */
+  padding: 10px;
+  background: var(--main-blue);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.nav a {
+  color: white;
+  font-family: sans-serif;
+}
+
+/* FORMS */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 3rem;
+  padding-bottom: 4px;
+  border: 1px solid gray;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  
+}
+

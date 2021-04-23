@@ -1,7 +1,12 @@
 class ItemsController < ApplicationController
   #before_action :require_login                                     <---------- implement
   #skip_before_action :require_login, only: [:index]
- 
+  
+  # ['/join', "/join/*", "/payment/*"].each do |path|
+  #   before path do
+  #       #some code
+  #   end
+  # end
 
   # def require_login                                               <--------- implement
   #   return head(:forbidden) unless session.include? :user_id
@@ -37,11 +42,6 @@ class ItemsController < ApplicationController
   get '/items/:id' do
     redirect_if_not_logged_in
     @item= Item.find(params[:id])
-    #if @item.status == "listing" && @item.user == current_user
-    #   erb :'items/show_item'
-    # else
-    #   erb :'items/show_item_buy'
-    # end
     erb :'items/show_item'
   end
 
