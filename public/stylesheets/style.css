@@ -6,12 +6,19 @@
   --main-gray: #303841;
 }
 
-BODY {
+body {
   font-size: 1.4rem;
+  background: #f2f4f8;
+  
 }
 
-.container {
+.main-container {
   padding: 10px 10px 10px 10px;
+
+}
+
+a {
+  text-decoration: none; 
 }
 
 /* NAVIGATION BAR styliing */
@@ -43,12 +50,51 @@ BODY {
 .form {
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
+  top: 25%;
+  
   align-items: center;
-  line-height: 3rem;
-  padding-bottom: 4px;
-  border: 1px solid gray;
-  margin-left: 5rem;
-  margin-right: 5rem;
+  /* line-height: 2rem; */
+  padding: 20px;
+  background: white;
+  /* border: solid yellow; */
+  max-width: 300px;
+  /* position: relative; */
+  box-shadow: 0 1rem 1rem -0.75rem 
   
 }
+
+.text-field {
+  height: 42px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0 28px 0;
+  box-sizing: border-box;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+.button {
+  background-color: #008CBA;;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  margin: 8px 0;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: var(--main-blue);
+}
+
+/* #login:hover, #signup:hover, #new-account:hover {
+  background-color: var(--main-blue);
+*/
+
 

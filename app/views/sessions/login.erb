@@ -1,19 +1,18 @@
-<h1>SellBy</h1>
 
-<h3>Sell and buy items</h3>
 
 <%= erb :'partials/error' %>
 
 <div class="form" id="login_box">
+  <h1>SellBy</h1>
+  <h3>Sell and buy items</h3>
   <form action="/login" method="post">
-    <label for="Useranme">Username</label><br>
-    <input type="text" name="username" placeholder="Username"><br>
+    <label for="Useranme">Username</label><br/>
+    <input type="text" name="username" placeholder="Username" class="text-field" id="username-field"><br>
     <label for="Useranme">Password</label><br>
-    <input type="text" name="password" placeholder="Password"><br>
-    <input class="buttom" type="submit" value="Log In" id="login">
+    <input type="text" name="password" placeholder="Password" class="text-field" id="password-field"><br>
+    <input class="button" type="submit" value="Log In" id="login">
   </form>
-  <br>
-  <a href="/signup"><input class="buttom" type="submit" value="Create New Account" id="new_account">
+  <a href="/signup"><input class="button" type="submit" value="Create New Account" id="new-account">
 </div>
 
     
