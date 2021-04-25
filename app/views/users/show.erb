@@ -1,6 +1,6 @@
 <%= erb :'partials/error' %>
 <section class="boxes" id="users-show">
-  <div class="section" id="listings">
+  <div class="item-box" id="listings">
     <h1>My Listings</h1>
     <% if @user.listings == nil  %>
       <p>You currently have no listings</p>
@@ -16,7 +16,7 @@
     <a href="/items/new"><input type="button" value="Create New Listing"></a>
   </div>
 
-  <div class="section" id="purchases">
+  <div class="item-box" id="purchases">
     <h1>Purchases</h1>
     <% @user.purchases.each do |item| %>
       <% if item.status == "purchased" %>
@@ -25,7 +25,20 @@
     <% end %>
   </div>
 
-  <div class="section" id="funds">
+  <div class="item-box" id="funds">
     <h1>Funds: <%= @user.show_funds %></h1>
   </div>
+
+  <div class="item-box">
+    <h1>Hola, como estas?</h1>
+  </div>
+
+  <div class="item-box">
+    <h1>Hola. como estas?</h1>
+  </div>
+
+  <div class="item-box">
+    <h1>Hola, como estas?</h1>
+  </div>
+
 </section>

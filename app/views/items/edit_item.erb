@@ -1,18 +1,18 @@
 <%= erb :'partials/error' %>
 
-<h1>Editing Listing</h1>
-<div class="form" id="edit_form">
+<section class="form" id="edit-item">
+  <h1>Editing Listing</h1>
   <form action="/items/<%= @item.id %>" method="post">
     <input type="hidden" id="hidden" name="_method" value="patch">
-    <label>Item Name:</label>
-    <input type="text" name="name" value="<%= @item.name %>"><br><br>
-    <label>Item Price:</label>
-    <input type="text" name="price" value="<%= @item.price %>"><br><br>
-    <label>Item Stock:</label>
-    <input type="integer" name="stock" value="<%= @item.stock %>"><br><br>
-    <input type="submit" value="Update">
+    <label>Item Name</label>
+    <input type="text" name="name" value="<%= @item.name %>" class="text-field">
+    <label>Item Price</label>
+    <input type="text" name="price" value="<%= @item.price %>" class="text-field">
+    <label>Item Stock</label>
+    <input type="integer" name="stock" value="<%= @item.stock %>" class="text-field">
+    <input type="submit" value="Update listing" class="button">
   </form><br>
-  <a href="/users/<%= current_user.slug %>"><input type="button" value="Cancel"></a>
-</div>
+  <a href="/users/<%= current_user.slug %>"><input type="button" value="Cancel" class="button"></a>
+</section>
 
 

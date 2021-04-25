@@ -6,11 +6,13 @@
   --main-gray: #303841;
 }
 
+/* Apply margin 0 and padding 0 to all elements by default */
 * {
   margin: 0;
   padding: 0;
 }
 
+/* box-sizing and font sizing */
 *,
 *::before,
 *::after {
@@ -22,21 +24,18 @@ html {
   box-sizing: border-box;
 }
 
-
 body {
-  font-size: 1.4rem;
   background: #f2f4f8;
   border: solid  2px;
-  margin: 0;
-  font-size: 1.0rem; 
+  /* margin: 0; */
+  font-size: 1rem; 
   font-weight: 400;
   line-height: 1.5;
-  height: auto;
+  /* height: auto; */
   box-sizing: inherit;
 }
 
 .main-container {
-  /* padding: 0px 20px 20px 20px; */
   border: solid yellow 1px;
   margin: 4.0rem 20px 20px 20px;
 }
@@ -44,11 +43,6 @@ body {
 a {
   text-decoration: none; 
 }
-
-/* h1 {
-  padding: 0;
-  margin: 0;
-} */
 
 /* nav */
 .nav {  
@@ -59,7 +53,6 @@ a {
   left: 0;
   width: 100%;
   border: solid green 1px;
-  /* padding: 10px; */
   background: var(--main-blue);
   /* box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4); */
   z-index: 10;
@@ -92,27 +85,39 @@ a {
 }
 
 /* Login and Sign up forms */
-.form {
+.form #signup-box, #login-box  {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  top: 25%;
+  /* top: 25%; */
   align-items: center;
   /* line-height: 2rem; */
   padding: 20px;
   background: white;
-  /* border: solid yellow; */
   max-width: 300px;
-  /* position: relative; */
   box-shadow: 0 1rem 1rem -0.75rem 
+}
+
+/* Base style for all other forms and for item boxes and placeorder-box */
+.form, .item-box, .placeorder-box {
+  display: flex;
+  flex-direction: column;
+  
+  /* top: 25%; */
+  align-items: center;
+  /* line-height: 2rem; */
+  padding: 20px;
+  background: white;
+  /* max-width: 300px; */
+  /* box-shadow: 0 1rem 1rem -0.75rem  */
 }
 
 .text-field {
   height: 42px;
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0 28px 0;
-  box-sizing: border-box;
+  margin: 6px 0 28px 0;
+  /* box-sizing: border-box; */
   font-size: 1rem;
   border-radius: 4px;
 }
@@ -138,6 +143,7 @@ a {
 /* #login:hover, #signup:hover, #new-account:hover {
   background-color: var(--main-blue);
 */
+
 
 #items-index {
   display: grid;
@@ -173,13 +179,17 @@ a {
 } 
 
 #users-show {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  gap: 20px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  /* align-items: center; */
+  justify-content: space-around;   /* For a SINGLE LINE, lieaves space on the left and right sides of the container */
+  align-content: space-around;
+  
 }
 
 #users-show .item-box {
-  border: solid black 2px;
+  border: solid red 2px;
+  margin-bottom: 1rem;
 } 
 
 
