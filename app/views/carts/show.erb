@@ -24,6 +24,8 @@
 
 <div class="placeorder-box" id="place_order">
   <% unless @cart.items.empty? %>
+    <h2>Funds: <%= @cart.user.show_funds %></h2>
+    <h2>Cart Total: $<%= @cart.total %></h2>
     <form action="/placeorder/<%= @cart.id %>" method="post">
       <input type="submit" value="Place Order">
     </form>
