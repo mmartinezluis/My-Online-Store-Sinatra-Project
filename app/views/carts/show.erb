@@ -3,9 +3,9 @@
 <% if @cart.items.empty? %>
   <h3>Your cart is currently empty</h3>
 <% else %>
-  <div class="all_items_box"> 
+  <section class="boxes" id="carts-show">
     <% @uniq_items.each do |item| %>
-      <div class="item_box"> 
+      <div class="item-box"> 
         <%= item.name %></p><br>
         <%= item.show_price %><br>
         <form action="/carts/<%= item.id %>" method="post">
@@ -19,10 +19,10 @@
         </form>
       </div>
     <% end %>
-  </div>
-<% end %>
+  <% end %>
 
-<div class="transaction_box" id="place_order">
+
+<div class="placeorder-box" id="place_order">
   <% unless @cart.items.empty? %>
     <form action="/placeorder/<%= @cart.id %>" method="post">
       <input type="submit" value="Place Order">
@@ -30,4 +30,4 @@
   <% end %>
 </div>
 
-
+</section>

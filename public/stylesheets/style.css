@@ -6,53 +6,97 @@
   --main-gray: #303841;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html { 
+  height: 100%;
+  box-sizing: border-box;
+}
+
+
 body {
   font-size: 1.4rem;
   background: #f2f4f8;
-  
+  border: solid  2px;
+  margin: 0;
+  font-size: 1.0rem; 
+  font-weight: 400;
+  line-height: 1.5;
+  height: auto;
+  box-sizing: inherit;
 }
 
 .main-container {
-  padding: 10px 10px 10px 10px;
-
+  /* padding: 0px 20px 20px 20px; */
+  border: solid yellow 1px;
+  margin: 4.0rem 20px 20px 20px;
 }
 
 a {
   text-decoration: none; 
 }
 
-/* NAVIGATION BAR styliing */
+/* h1 {
+  padding: 0;
+  margin: 0;
+} */
+
+/* nav */
 .nav {  
-  /* make the nav container a flex box */
   display: flex;
-  /* let all elements inside nav bar fill the full space horizontally */
-  justify-content:space-evenly;
-  /* let the nav bar stay on the same place when scrolling the page */
+  justify-content: flex-start;
   position: fixed;
-  /* let the nav bar be centralized horizontally across the page */
-  margin: auto;
   top: 0;
   left: 0;
-  right: 0;
-  /* let the elements insde the nav bar be 10px awaay from the nav bar borders on all sides */
-  padding: 10px;
+  width: 100%;
+  border: solid green 1px;
+  /* padding: 10px; */
   background: var(--main-blue);
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+  /* box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4); */
   z-index: 10;
 }
 
-.nav a {
-  color: white;
-  font-family: sans-serif;
+.nav-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  /* top: 0; */
 }
 
-/* FORMS */
+.nav ul {
+  list-style: none;
+}
+
+.nav-list a {
+  display: block;
+  color: white;
+  padding: 14px 16px;
+  padding: 1rem;
+  font-family: inherit;
+  font-size: 1.2rem;
+  line-height: 0.8em;
+  border-right: 1px solid #bbb;
+}
+
+.nav-list a:hover {
+  background: var(--main-red)
+}
+
+/* Login and Sign up forms */
 .form {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   top: 25%;
-  
   align-items: center;
   /* line-height: 2rem; */
   padding: 20px;
@@ -61,7 +105,6 @@ a {
   max-width: 300px;
   /* position: relative; */
   box-shadow: 0 1rem 1rem -0.75rem 
-  
 }
 
 .text-field {
@@ -92,9 +135,48 @@ a {
 .button:hover {
   background-color: var(--main-blue);
 }
-
 /* #login:hover, #signup:hover, #new-account:hover {
   background-color: var(--main-blue);
 */
+
+
+/* Users-show, Items-show, and Carts-show sections */
+section.boxes {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  /* grid-template-rows: 50% 50%;  */
+  gap: 20px 20px;
+  /* justify-content: center; */
+}
+
+#carts-show {
+  display: grid;
+  grid-template-columns: 75%  ;
+  /* grid-template-rows: 100px [last-line]; */
+  /* grid-template-rows: 50% 50%;  */
+  gap: 20px 20px;
+  /* justify-content: end; */
+}
+
+.item-box {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: auto;
+  border: solid black 2px;
+} 
+
+.placeorder-box {
+  display: grid;
+  /* flex-wrap: wrap; */
+  /* max-width: auto; */
+  border: solid black 2px;
+  grid-column: 2 / span 1;
+  grid-row-start: 1;
+  grid-row-end: 7;
+  
+  /* height: 100vh; */
+  /* position: relative; */
+} 
+
 
 

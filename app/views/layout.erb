@@ -5,24 +5,26 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
   </head>
   <body>
-    <% if !logged_in? %>
-    <nav class="nav" id="navbar">
-      
-        <a href="/index">Home</a>
-        <a href="/login">My Apps</a>
-        <a href="/index">About</a>
-      
-    </nav>
-    <% else %>
-    <nav class="nav" id="navbar">
-      
-        <a href="/items">Home</a>
-        <a href="/users/<%= current_user.slug %>">My Account</a>
-        <a href="/carts/<%= current_user.cart.id %>">Cart</a>
-        <a href="/logout">Log Out</a>
-      
-    </nav>
-    <% end %>
+  <header>
+      <nav class="nav" id="navbar">
+        <% if !logged_in? %>
+          <ul class="nav-list">
+            <li><a href="/index">Home</a></li>
+            <li><a href="/login">My Apps</a></li>
+            <li><a href="/index">About</a></li>
+          </ul>
+        <% else %>
+          <ul class="nav-list">
+            <li><a href="/items">Home</a></li>
+            <li><a href="/users/<%= current_user.slug %>">My Account</a></li>
+            <li><a href="/carts/<%= current_user.cart.id %>">Cart</a></li>
+            <li><a href="/logout">Log Out</a></li>
+          </ul>
+        <% end %>
+      </nav>
+    </div>
+  </header>
+    
     <div class="main-container">
       <%= yield %>
     </div>

@@ -1,31 +1,31 @@
 <%= erb :'partials/error' %>
-
-<div class="section" id="listings">
-  <h1>My Listings</h1>
-  <% if @user.listings == nil  %>
-    <p>You currently have no listings</p>
-  <% else %>
-    <% @user.listings.each do |item| %>
-      <% if item.status == "listing" %>
-        <a href="/items/<%= item.id %>"><%= item.name %><br><%= item.show_price %></a><br><br>
+<section class="boxes" id="users-show">
+  <div class="section" id="listings">
+    <h1>My Listings</h1>
+    <% if @user.listings == nil  %>
+      <p>You currently have no listings</p>
+    <% else %>
+      <% @user.listings.each do |item| %>
+        <% if item.status == "listing" %>
+          <div class="item-box" id="users-item">
+            <a href="/items/<%= item.id %>"><%= item.name %><br><%= item.show_price %></a>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-</div>
+    <a href="/items/new"><input type="button" value="Create New Listing"></a>
+  </div>
 
-<div class="section" id="new_listing">
-  <a href="/items/new"><input type="button" value="Create New Listing"></a>
-</div>
-
-<div class="section" id="purchases">
-  <h1>Purchases</h1>
-  <% @user.purchases.each do |item| %>
-    <% if item.status == "purchased" %>
-      <%= item.name %><br><%= item.show_price %><br>Quantity: <%= item.quantity_purchased %><br><br>
+  <div class="section" id="purchases">
+    <h1>Purchases</h1>
+    <% @user.purchases.each do |item| %>
+      <% if item.status == "purchased" %>
+        <%= item.name %><br><%= item.show_price %><br>Quantity: <%= item.quantity_purchased %><br><br>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
 
-<div class="section" id="funds">
-  <h1>Funds: <%= @user.show_funds %></h1>
-</div>
+  <div class="section" id="funds">
+    <h1>Funds: <%= @user.show_funds %></h1>
+  </div>
+</section>
