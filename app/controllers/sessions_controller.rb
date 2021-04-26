@@ -17,4 +17,22 @@ class SessionsController < ApplicationController
       erb :'sessions/login'
     end
   end
+
+  get '/all_my_listings' do
+    if !logged_in?
+      erb :'sessions/login'
+    else
+      @user = current_user
+      erb :'sessions/listings'
+    end
+  end
+
+  get '/purchases' do
+    if !logged_in?
+      erb :'sessions/login'
+    else
+      @user = current_user
+      erb :'sessions/purchases'
+    end
+  end
 end

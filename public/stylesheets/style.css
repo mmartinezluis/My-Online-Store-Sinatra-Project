@@ -4,6 +4,28 @@
   --main-red: #be3144;
   --main-blue: #45567d;
   --main-gray: #303841;
+
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
 }
 
 /* Apply margin 0 and padding 0 to all elements by default */
@@ -81,7 +103,7 @@ a {
 }
 
 .nav-list a:hover {
-  background: var(--main-red)
+  background: #67799e;
 }
 
 /* Login and Sign up forms */
@@ -182,15 +204,21 @@ a {
   display: flex;
   flex-wrap: wrap;
   /* align-items: center; */
-  justify-content: space-around;   /* For a SINGLE LINE, lieaves space on the left and right sides of the container */
-  align-content: space-around;
-  
+  justify-content: space-around;   /*For a SINGLE LINE, lieaves space on the left and right sides of each of the flex containers
+  /* align-content: space-around; */
+  /* align-items: baseline; */
 }
 
 #users-show .item-box {
   border: solid red 2px;
   margin-bottom: 1rem;
 } 
+
+#sessions-listings {
+  display: grid;
+  grid-template-columns: 1;
+  gap: 20px;
+}
 
 
 

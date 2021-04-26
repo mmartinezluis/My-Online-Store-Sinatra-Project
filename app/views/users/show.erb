@@ -2,27 +2,27 @@
 <section class="boxes" id="users-show">
   <div class="item-box" id="listings">
     <h1>My Listings</h1>
-    <% if @user.listings == nil  %>
+    <% if @user.listings.empty? %>
       <p>You currently have no listings</p>
     <% else %>
-      <% @user.listings.each do |item| %>
-        <% if item.status == "listing" %>
+      <% @user.listings[-1..-1].each do |item| %>
+        <% if item != nil %>
           <div class="item-box" id="users-item">
-            <a href="/items/<%= item.id %>"><%= item.name %><br><%= item.show_price %></a>
+            <a href="/items/<%= item.id %>"><%= item.name %><br><%= item.show_price %><br><%= item.stock %></a>
           </div>
         <% end %>
       <% end %>
     <% end %>
-    <a href="/items/new"><input type="button" value="Create New Listing"></a>
+    <a href="/all_my_listings" id="all-listing">All my listings</a>
+    <a href="/items/new" class="button" id="new-listing">Create new listing</a>
   </div>
 
   <div class="item-box" id="purchases">
     <h1>Purchases</h1>
-    <% @user.purchases.each do |item| %>
-      <% if item.status == "purchased" %>
-        <%= item.name %><br><%= item.show_price %><br>Quantity: <%= item.quantity_purchased %><br><br>
-      <% end %>
+    <% @user.purchases[-1..-1].each do |item| %>
+      <%= item.name %><br><%= item.show_price %><br>Quantity: <%= item.quantity_purchased %><br><br>
     <% end %>
+    <a href="/purchases">All purchases</a>
   </div>
 
   <div class="item-box" id="funds">

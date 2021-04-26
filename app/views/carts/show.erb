@@ -5,7 +5,7 @@
 <% else %>
   <section class="boxes" id="carts-show">
     <% @uniq_items.each do |item| %>
-      <div class="item-box"> 
+      <div class="item-box" id="carts-item-box"> 
         <%= item.name %></p><br>
         <%= item.show_price %><br>
         <form action="/carts/<%= item.id %>" method="post">
@@ -22,7 +22,7 @@
   <% end %>
 
 
-<div class="placeorder-box" id="place_order">
+<div class="placeorder-box" id="placeorder">
   <% unless @cart.items.empty? %>
     <h2>Funds: <%= @cart.user.show_funds %></h2>
     <h2>Order Total: $<%= @cart.total %></h2>
