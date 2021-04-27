@@ -106,7 +106,8 @@ a {
 }
 
 /* Login and Sign up forms */
-#signup-box, #login-box  {
+#signup-box, 
+#login-box  {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -120,19 +121,32 @@ a {
 }
 
 /* Base style for all other forms and for item boxes and placeorder-box */
-.form, .item-box, .placeorder-box {
+.form, 
+.item-box, 
+.placeorder-box {
   display: flex;
   flex-direction: column;
-  
   /* top: 25%; */
   align-items: center;
-  
   /* line-height: 2rem; */
   padding: 20px;
   background: white;
   /* max-width: 300px; */
   /* box-shadow: 0 1rem 1rem -0.75rem  */
 }
+
+.form#new-item, 
+.form#edit-item {
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+#sessions-item-box, 
+#purchases-item-box, 
+#items-show-item-box {
+  width: 20rem; 
+}
+
 
 .text-field {
   height: 42px;
@@ -162,10 +176,6 @@ a {
 .button:hover {
   background-color: var(--main-blue);
 }
-/* #login:hover, #signup:hover, #new-account:hover {
-  background-color: var(--main-blue);
-*/
-
 
 #items-index {
   display: grid;
@@ -214,10 +224,13 @@ a {
   margin-bottom: 1rem;
 } 
 
-#sessions-listings, #sessions-purchases {
+#sessions-listings, 
+#sessions-purchases {
   display: grid;
   grid-template-columns: 1;
+  justify-items: center;
   gap: 20px;
+  
 }
 
 

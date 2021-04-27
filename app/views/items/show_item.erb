@@ -1,7 +1,7 @@
 <section class="form" id="show-item">
   <% if @item.status == "listing" && @item.user == current_user %>
     <p>Listing</p>
-    <div class="item-box" id="items-item-box">
+    <div class="item-box" id="items-show-item-box">
       <%= erb :'items/partials/show' %><br>
       <a href="/items/<%= @item.id %>/edit" class="button" id="edit-listing-link">Edit Listing</a>
       <form action="/items/<%= @item.id %>" method="post">
