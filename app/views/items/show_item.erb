@@ -1,20 +1,16 @@
 <section class="form" id="show-item">
   <% if @item.status == "listing" && @item.user == current_user %>
     <p>Listing</p>
-    <div class="item-box" id="items-show-item-box">
-      <%= erb :'items/partials/show' %><br>
-      <a href="/items/<%= @item.id %>/edit" class="button" id="edit-listing-link">Edit Listing</a>
-      <form action="/items/<%= @item.id %>" method="post">
-        <input type="hidden" id="hidden" name="_method" value="delete">
-        <input type="submit" value="Delete" class="button" id="delete-button">
-      </form>
-    </div>
+    <%= erb :'items/partials/show' %>
+    <a href="/items/<%= @item.id %>/edit" class="button" id="edit-listing-link">Edit Listing</a>
+    <form action="/items/<%= @item.id %>" method="post">
+      <input type="hidden" id="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete" class="button" id="delete-button">
+    </form>
   <% else %>
-  <% erb :'partials/error' %>
-    <div class="item-boxr">
-      <%= erb :'items/partials/show' %><br>
-      <a href="/add_item/<%= @item.id %>" class="button" d="add-item-link">Add to Cart</a><br>
-      <a href="/buy/<%= @item.id %>" class="button" id="buy--now-link">Buy Now</a>
-    </div>
+    <% erb :'partials/error' %>
+    <%= erb :'items/partials/show' %>
+    <a href="/add_item/<%= @item.id %>" class="button" d="add-item-link">Add to Cart</a>
+    <a href="/buy/<%= @item.id %>" class="button" id="buy--now-link">Buy Now</a>
   <% end %>
 </section>

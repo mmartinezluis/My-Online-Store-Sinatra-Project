@@ -1,7 +1,7 @@
 <h1>All My Listings</h1>
 <section class="boxes" id="sessions-listings">
   <% @user.listings.each do |item| %>
-    <div class="item-box" id="sessions-item-box">
+    <div class="item-box" id="sessions-listings-item-box">
       <h1><%= item.name %></h1>
       <%= item.show_price %><br>
       Stock: <%= item.stock %>

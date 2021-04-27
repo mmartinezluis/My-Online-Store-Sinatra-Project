@@ -1,7 +1,7 @@
-<h1>All Purchases</h1>
 <section class="boxes" id="sessions-purchases">
+  <h1>All Purchases</h1>
   <% @user.purchases.each do |item| %>
-    <div class="item-box" id="purchases-item-box">
+    <div class="item-box" id="sessions-purchases-item-box">
       <h1><%= item.name %></h1>
       <%= item.show_price %><br>
       Quantity: <%= item.quantity_purchased %>

@@ -121,9 +121,7 @@ a {
 }
 
 /* Base style for all other forms and for item boxes and placeorder-box */
-.form, 
-.item-box, 
-.placeorder-box {
+.form, .item-box, .placeorder-box {
   display: flex;
   flex-direction: column;
   /* top: 25%; */
@@ -137,16 +135,21 @@ a {
 
 .form#new-item, 
 .form#edit-item {
-  max-width: 32rem;
   margin: 0 auto;
+  max-width: 32rem;
 }
 
-#sessions-item-box, 
-#purchases-item-box, 
-#items-show-item-box {
-  width: 20rem; 
+.form#show-item {
+  margin: 0 auto;
+  max-width: 20rem;
 }
 
+#sessions-listings-item-box, 
+#sessions-purchases-item-box {
+  max-width: 20rem; 
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
 
 .text-field {
   height: 42px;
@@ -224,14 +227,13 @@ a {
   margin-bottom: 1rem;
 } 
 
-#sessions-listings, 
+/* #sessions-listings, 
 #sessions-purchases {
   display: grid;
   grid-template-columns: 1;
   justify-items: center;
   gap: 20px;
-  
-}
+} */
 
 
 

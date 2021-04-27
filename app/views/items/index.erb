@@ -4,9 +4,15 @@
     <div class="item-box" id="items-index-item-box">
       <% if item.status == "listing" %>
         <% if item.user == current_user %>
-          <%= item.name %><br><%= item.show_price %><br>Seller: <%= item.user.username %><br>Stock: <%= item.stock %>
+          <h1><%= item.name %></h1>
+          <%= item.show_price %><br>
+          Seller: <%= item.user.username %><br>
+          Stock: <%= item.stock %>
         <% else %>
-          <a href="/items/<%= item.id %>"><%= item.name %><br><%= item.show_price %><br>Seller: <%= item.user.username %><br>Stock: <%= item.stock %></a>
+          <h1><a href="/items/<%= item.id %>"><%= item.name %></a></h1>
+          <%= item.show_price %><br>
+          Seller: <%= item.user.username %><br>
+          Stock: <%= item.stock %>
         <% end %>
       <% end %>
     </div>
