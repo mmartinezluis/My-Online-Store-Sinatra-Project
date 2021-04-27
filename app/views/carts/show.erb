@@ -1,9 +1,8 @@
 <%= erb :'partials/error' %>
-
-<% if @cart.items.empty? %>
-  <h3>Your cart is currently empty</h3>
-<% else %>
-  <section class="boxes" id="carts-show">
+<section class="boxes" id="carts-show">
+  <% if @cart.items.empty? %>
+    <h3>Your cart is currently empty</h3>
+  <% else %>
     <% @uniq_items.each do |item| %>
       <div class="item-box" id="carts-item-box"> 
         <%= item.name %></p><br>
@@ -21,15 +20,13 @@
     <% end %>
   <% end %>
 
-
-<div class="placeorder-box" id="placeorder">
-  <% unless @cart.items.empty? %>
-    <h2>Funds: <%= @cart.user.show_funds %></h2>
-    <h2>Order Total: $<%= @cart.total %></h2>
-    <form action="/placeorder/<%= @cart.id %>" method="post">
-      <input type="submit" value="Place Order">
-    </form>
-  <% end %>
-</div>
-
+  <div class="placeorder-box" id="placeorder">
+    <% unless @cart.items.empty? %>
+      <h2>Funds: <%= @cart.user.show_funds %></h2>
+      <h2>Order Total: $<%= @cart.total %></h2>
+      <form action="/placeorder/<%= @cart.id %>" method="post">
+        <input type="submit" value="Place Order">
+      </form>
+    <% end %>
+  </div>
 </section>

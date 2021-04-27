@@ -2,7 +2,7 @@
 <section class="boxes" id="sessions-listings">
   <% @user.listings.each do |item| %>
     <div class="item-box" id="sessions-item-box">
-      <h1><%= item.name %></h1><br>
+      <h1><%= item.name %></h1>
       <%= item.show_price %><br>
       Stock: <%= item.stock %>
       <a href="/items/<%= item.id %>/edit" class="button" id="edit-listing-link">Edit Listing</a>

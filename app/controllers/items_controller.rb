@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
   get '/items' do
     redirect_if_not_logged_in
     @items= Item.all
-    erb :'items/items'
+    erb :'items/index'
   end
 
   get '/items/new' do

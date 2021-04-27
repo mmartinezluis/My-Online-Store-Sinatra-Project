@@ -73,6 +73,10 @@ class Cart < ActiveRecord::Base
     self.uniq_items.find {|item| current_quantity(item) > item.stock} 
   end
 
+  def out_of_stock_items
+    self.uniq_items.select {|item| item.stock == 0 }
+  end
+
   def enough_funds?
     self.user.funds >= self.user.cart.total
   end

@@ -6,7 +6,7 @@ class CartsController < ApplicationController
     @item= Item.find(params[:id])
     @cart.items << @item
     @cart.save
-    erb :'items/items'
+    erb :'items/index'
   end
 
   get '/buy/:id' do
@@ -26,12 +26,16 @@ class CartsController < ApplicationController
     @uniq_items= @cart.uniq_items
     erb :'carts/show'
   end
-
+  
+  # UPDATE action for cart model
   patch '/carts/:id' do
     redirect_if_not_logged_in
-    @item = Item.find(params[:id])
-    @user= current_user
     @cart = current_user.cart
+    @item= @cart.items.find { |i| i.id == params[:id].to_i }
+    unless @item.stock > 0
+      flash[:message] = ["That item is currently out of stock"]
+      redirect to "/carts/#{@cart.id}"
+    end
     limit = @item.stock
     if params[:quantity].to_i > limit
       flash[:message] = ["The seller's limit for #{@item.name} is #{limit}"]
@@ -54,7 +58,11 @@ class CartsController < ApplicationController
     redirect_if_not_logged_in
     @user= current_user
     @cart = Cart.find(params[:id])
-    if @cart.over_limit_item?
+    if @cart.out_of_stock_items != []
+      out_of_stock_items = @cart.out_of_stock_items
+      flash[:message] = ["Unable to place your order: the item '#{out_of_stock_items[0].name}' is currently out of stock"]
+      redirect to "/carts/#{@cart.id}"
+    elsif @cart.over_limit_item?
       over_limit_item = @cart.over_limit_item?
       flash[:message] = ["The seller's limit for #{over_limit_item.name} is #{over_limit_item.stock}"]
       redirect to "/carts/#{@cart.id}"
@@ -70,9 +78,8 @@ class CartsController < ApplicationController
 
   delete '/carts/:id' do
     redirect_if_not_logged_in
-    @item= Item.find(params[:id])
-    @user= current_user
-    @cart= @user.cart
+    @cart= current_user.cart
+    @item= @cart.items.find { |i| i.id == params[:id].to_i }
     @cart.items.delete_if {|i| i.id == @item.id}
     @cart.save
     redirect to "/carts/#{@cart.id}"

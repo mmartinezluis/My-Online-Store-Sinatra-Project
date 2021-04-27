@@ -5,7 +5,6 @@
   --main-blue: #45567d;
   --main-gray: #303841;
 
-  --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
   --pink: #e83e8c;
@@ -107,7 +106,7 @@ a {
 }
 
 /* Login and Sign up forms */
-.form #signup-box, #login-box  {
+#signup-box, #login-box  {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -127,6 +126,7 @@ a {
   
   /* top: 25%; */
   align-items: center;
+  
   /* line-height: 2rem; */
   padding: 20px;
   background: white;
@@ -214,7 +214,7 @@ a {
   margin-bottom: 1rem;
 } 
 
-#sessions-listings {
+#sessions-listings, #sessions-purchases {
   display: grid;
   grid-template-columns: 1;
   gap: 20px;
