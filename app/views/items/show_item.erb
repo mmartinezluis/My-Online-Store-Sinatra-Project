@@ -2,15 +2,16 @@
   <% if @item.status == "listing" && @item.user == current_user %>
     <p>Listing</p>
     <%= erb :'items/partials/show' %>
-    <a href="/items/<%= @item.id %>/edit" class="button" id="edit-listing-link">Edit Listing</a>
+    <a href="/items/<%= @item.id %>/edit" class="button" id="edit-listing">Edit Listing</a>
+    <div class="hr" id="horizontal-line-login"></div>
     <form action="/items/<%= @item.id %>" method="post">
       <input type="hidden" id="hidden" name="_method" value="delete">
-      <input type="submit" value="Delete" class="button" id="delete-button">
+      <input type="submit" value="Delete" class="button" id="delete">
     </form>
   <% else %>
     <% erb :'partials/error' %>
     <%= erb :'items/partials/show' %>
-    <a href="/add_item/<%= @item.id %>" class="button" d="add-item-link">Add to Cart</a>
-    <a href="/buy/<%= @item.id %>" class="button" id="buy--now-link">Buy Now</a>
+    <a href="/add_item/<%= @item.id %>" class="button" id="add-item">Add to Cart</a>
+    <a href="/buy/<%= @item.id %>" class="button" id="buy-now">Buy Now</a>
   <% end %>
 </section>

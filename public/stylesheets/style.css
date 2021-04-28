@@ -34,6 +34,7 @@
 }
 
 /* box-sizing and font sizing */
+
 *,
 *::before,
 *::after {
@@ -162,7 +163,7 @@ section.form {
   text-decoration: none;
   text-align: center;
   display: inline-block;
-  font-size: 16px;
+  font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
   transition-duration: 0.4s;
@@ -212,9 +213,47 @@ section.form {
   max-width: 20rem;
 }
 
+.button#edit-listing {
+  color: green;
+  background: white;
+  border: 1px solid green;
+}
 
+.button#edit-listing:hover {
+  color: white;
+  background: var(--green);
+  border: 1px solid var(--green);
+}
 
+.button#delete {
+  color: red;
+  background: white;
+  border: 1px solid red;
+}
 
+.button#delete:hover {
+  color: white;
+  background: var(--danger);
+  border: 1px solid var(--danger);
+}
+
+.button#add-item,
+.button#buy-now {
+  color: white;
+  background: orange;
+  border: 1px solid orange;
+}
+
+.button#add-item:hover,
+.button#buy-now:hover {
+  color: white;
+  background: var(--yellow);
+  border: 1px solid var(--yellow);
+}
+
+/* END FORM SECTIONS */
+
+/* START BOXES SECTIONS (in this style sheet, any view that contain more than one box is classified as a boxes section) */
 
 /* Base style for all other forms and for item boxes and placeorder-box */
 .item-box, 
@@ -227,20 +266,12 @@ section.form {
   background: white;
 }
 
-
-
 #sessions-listings-item-box, 
 #sessions-purchases-item-box {
   max-width: 20rem; 
   margin: 0 auto;
   margin-bottom: 20px;
 }
-
-
-
-
-
-
 
 #items-index {
   display: grid;
