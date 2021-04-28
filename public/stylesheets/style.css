@@ -37,22 +37,20 @@
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 html { 
   height: 100%;
-  box-sizing: border-box;
+  box-sizing: border-box;     /* Border box includes padding and margin within the given box element, without resizing the box */
 }
 
 body {
   background: #f2f4f8;
   border: solid  2px;
-  /* margin: 0; */
   font-size: 1rem; 
   font-weight: 400;
   line-height: 1.5;
-  /* height: auto; */
   box-sizing: inherit;
 }
 
@@ -65,7 +63,11 @@ a {
   text-decoration: none; 
 }
 
-/* nav */
+ul {
+  list-style: none;  
+}
+
+/* START NAV */
 .nav {  
   display: flex;
   justify-content: flex-start;
@@ -73,7 +75,6 @@ a {
   top: 0;
   left: 0;
   width: 100%;
-  border: solid green 1px;
   background: var(--main-blue);
   /* box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4); */
   z-index: 10;
@@ -81,62 +82,107 @@ a {
 
 .nav-list {
   display: flex;
-  margin: 0;
-  padding: 0;
-  /* top: 0; */
+  margin-left: 2rem;
 }
 
-.nav ul {
-  list-style: none;
+@media (max-widdth: 28.75em) {
+  .nav {
+    justify-content: center;
+  }
+
+  .nav-list {
+    margin: 0 1rem;
+  }
 }
 
 .nav-list a {
   display: block;
   color: white;
-  padding: 14px 16px;
   padding: 1rem;
   font-family: inherit;
   font-size: 1.2rem;
   line-height: 0.8em;
-  border-right: 1px solid #bbb;
+  /* border-right: 1px solid #bbb; */
 }
 
 .nav-list a:hover {
   background: #67799e;
 }
 
-/* Login and Sign up forms */
-#signup-box, 
-#login-box  {
+/* END NAV */
+
+/* START FORM SECTIONS (in this stylehseet, any view that consits of a single box is considered a form) */
+
+section.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+}
+
+/* Login and Sign Up forms */
+.form#login-box,
+.form#signup-box {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  /* top: 25%; */
   align-items: center;
-  /* line-height: 2rem; */
-  padding: 20px;
+  padding: 2.5rem;
   background: white;
   max-width: 300px;
   box-shadow: 0 1rem 1rem -0.75rem 
 }
 
+#login-box h1,
+#signup-box h1 {
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+#login-box h3 {
+  margin-bottom: 10px;
+}
+
+.text-field {
+  height: 42px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 5px 0 20px 0;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+.button#login, 
+.button#signup {
+  width: 100%;
+}
+
+.hr#horizontal-line-login {
+  border-bottom: 1px solid var(--gray);
+  display: flex;
+  margin: 20px;
+  width: 100%;
+}
+
 /* Base style for all other forms and for item boxes and placeorder-box */
-.form, .item-box, .placeorder-box {
+.item-box, 
+.placeorder-box {
   display: flex;
   flex-direction: column;
-  /* top: 25%; */
   align-items: center;
   /* line-height: 2rem; */
   padding: 20px;
   background: white;
-  /* max-width: 300px; */
-  /* box-shadow: 0 1rem 1rem -0.75rem  */
 }
 
+/* Custom style for New-item and Edit-item forms */
 .form#new-item, 
 .form#edit-item {
   margin: 0 auto;
   max-width: 32rem;
+  padding: 2.5rem;
 }
 
 .form#show-item {
@@ -151,15 +197,7 @@ a {
   margin-bottom: 20px;
 }
 
-.text-field {
-  height: 42px;
-  width: 100%;
-  padding: 12px 20px;
-  margin: 6px 0 28px 0;
-  /* box-sizing: border-box; */
-  font-size: 1rem;
-  border-radius: 4px;
-}
+
 
 .button {
   background-color: #008CBA;;
