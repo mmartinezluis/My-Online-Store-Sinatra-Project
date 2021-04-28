@@ -68,6 +68,7 @@ ul {
 }
 
 /* START NAV */
+
 .nav {  
   display: flex;
   justify-content: flex-start;
@@ -113,6 +114,8 @@ ul {
 
 /* START FORM SECTIONS (in this stylehseet, any view that consits of a single box is considered a form) */
 
+/* Base style for all forms */
+
 section.form {
   display: flex;
   flex-direction: column;
@@ -123,14 +126,10 @@ section.form {
 }
 
 /* Login and Sign Up forms */
+
 .form#login-box,
 .form#signup-box {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  align-items: center;
   padding: 2.5rem;
-  background: white;
   max-width: 300px;
   box-shadow: 0 1rem 1rem -0.75rem 
 }
@@ -154,51 +153,6 @@ section.form {
   border-radius: 4px;
 }
 
-.button#login, 
-.button#signup {
-  width: 100%;
-}
-
-.hr#horizontal-line-login {
-  border-bottom: 1px solid var(--gray);
-  display: flex;
-  margin: 20px;
-  width: 100%;
-}
-
-/* Base style for all other forms and for item boxes and placeorder-box */
-.item-box, 
-.placeorder-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* line-height: 2rem; */
-  padding: 20px;
-  background: white;
-}
-
-/* Custom style for New-item and Edit-item forms */
-.form#new-item, 
-.form#edit-item {
-  margin: 0 auto;
-  max-width: 32rem;
-  padding: 2.5rem;
-}
-
-.form#show-item {
-  margin: 0 auto;
-  max-width: 20rem;
-}
-
-#sessions-listings-item-box, 
-#sessions-purchases-item-box {
-  max-width: 20rem; 
-  margin: 0 auto;
-  margin-bottom: 20px;
-}
-
-
-
 .button {
   background-color: #008CBA;;
   color: white;
@@ -217,6 +171,76 @@ section.form {
 .button:hover {
   background-color: var(--main-blue);
 }
+
+.button#login, 
+.button#signup {
+  width: 100%;
+}
+
+/* horizontal line */
+
+.hr {
+  border-bottom: 1px solid var(--gray);
+  display: flex;
+  margin: 1.25rem;
+  width: 100%;
+}
+
+/* New-item and Edit-item forms */
+
+.form#new-item, 
+.form#edit-item {
+  max-width: 32rem;
+  border-radius: 0.25rem;
+}
+
+.button#cancel {
+  color: black;
+  background: none;
+  border: 1px solid gray;
+}
+
+.button#cancel:hover {
+  color: white;
+  background: gray;
+  border: 1px solid gray;
+}
+
+/* Show-item view */
+
+.form#show-item {
+  max-width: 20rem;
+}
+
+
+
+
+
+/* Base style for all other forms and for item boxes and placeorder-box */
+.item-box, 
+.placeorder-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* line-height: 2rem; */
+  padding: 20px;
+  background: white;
+}
+
+
+
+#sessions-listings-item-box, 
+#sessions-purchases-item-box {
+  max-width: 20rem; 
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+
+
+
+
+
 
 #items-index {
   display: grid;

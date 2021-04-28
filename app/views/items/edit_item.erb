@@ -11,7 +11,8 @@
     <input type="integer" name="stock" value="<%= @item.stock %>" class="text-field">
     <input type="submit" value="Update listing" class="button">
   </form>
-  <a href="/users/<%= current_user.slug %>"><input type="button" value="Cancel" class="button"></a>
+  <div class="hr" id="horizontal-line-login"></div>
+  <a href="/users/<%= current_user.slug %>"><input type="button" value="Cancel" class="button" id="cancel"></a>
 </section>
 
 
