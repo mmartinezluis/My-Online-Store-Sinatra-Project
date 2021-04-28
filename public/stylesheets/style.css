@@ -253,24 +253,16 @@ section.form {
 
 /* END FORM SECTIONS */
 
-/* START BOXES SECTIONS (in this style sheet, any view that contain more than one box is classified as a boxes section) */
+/* START BOXES SECTIONS (in this style sheet, any view that contains more than one box is classified as a boxes section) */
 
-/* Base style for all other forms and for item boxes and placeorder-box */
+/* Base style for all item boxes and the placeorder-box */
 .item-box, 
 .placeorder-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* line-height: 2rem; */
-  padding: 20px;
+  padding: 1.25rem;;
   background: white;
-}
-
-#sessions-listings-item-box, 
-#sessions-purchases-item-box {
-  max-width: 20rem; 
-  margin: 0 auto;
-  margin-bottom: 20px;
 }
 
 #items-index {
@@ -279,9 +271,24 @@ section.form {
   gap: 20px 20px;
 }
 
+@media (max-width: 700px) {
+  #items-index {
+    grid-template-columns: auto auto;
+  }
+}
+
 #items-index .item-box {
   border: solid black 2px;
 } 
+
+#sessions-listings-item-box, 
+#sessions-purchases-item-box {
+  max-width: 20rem; 
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+
 
 #carts-show {
   display: grid;
