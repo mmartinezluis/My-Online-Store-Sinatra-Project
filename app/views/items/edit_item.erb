@@ -2,14 +2,22 @@
 <section class="form" id="edit-item">
   <h1>Editing Listing</h1>
   <form action="/items/<%= @item.id %>" method="post">
+    <div class="form-sections">
     <input type="hidden" id="hidden" name="_method" value="patch">
+    <span>
     <label>Item Name</label>
-    <input type="text" name="name" value="<%= @item.name %>" class="text-field">
-    <label>Item Price</label>
-    <input type="text" name="price" value="<%= @item.price %>" class="text-field">
-    <label>Item Stock</label>
-    <input type="integer" name="stock" value="<%= @item.stock %>" class="text-field">
+    <input type="text" name="name" value="<%= @item.name %>" class="text-field" id="name">
+    </span>
+    <span>
+      <label>Item Price</label>
+      <input type="text" name="price" value="<%= @item.price %>" class="text-field" id="price">
+    </span>
+    <span>
+      <label>Item Stock</label>
+      <input type="integer" name="stock" value="<%= @item.stock %>" class="text-field" id="stock">
+    </span>
     <input type="submit" value="Update listing" class="button">
+    </div>
   </form>
   <div class="hr" id="horizontal-line-login"></div>
   <a href="/users/<%= current_user.slug %>"><input type="button" value="Cancel" class="button" id="cancel"></a>

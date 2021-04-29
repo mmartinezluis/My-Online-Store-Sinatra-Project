@@ -202,6 +202,8 @@ section.form {
   margin-bottom: 10px;
 }
 
+/* Base style for all text-fields */
+
 .text-field {
   height: 42px;
   width: 100%;
@@ -250,6 +252,25 @@ section.form {
 .form#edit-item {
   max-width: 32rem;
   border-radius: 0.25rem;
+  /* text-align: center; */
+}
+
+.form-sections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Custom style for text-fields in items/new, items/edit views */
+#stock.text-field,
+#price.text-field {
+  height: 2rem;
+  width: 25%;
+  padding: 12px 20px;
+  margin: 5px 0 20px 0;
+  font-size: 1rem;
+  border-radius: 4px;
+  text-align: center;
 }
 
 .button#cancel {
@@ -430,7 +451,7 @@ section.form {
 
 #users-show .item-box {
   border: solid red 2px;
-  margin: 0rem 1rem 3rem 1rem;
+  margin: 0rem 1rem 2rem 1rem;
 } 
 
 /* #sessions-listings, 
@@ -450,3 +471,4 @@ section.form {
   margin-bottom: 1.25rem;
 }
 
+/* END BOXES SECTIONS */

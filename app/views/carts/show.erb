@@ -5,16 +5,16 @@
   <% else %>
     <% @uniq_items.each do |item| %>
       <div class="item-box" id="carts-item-box"> 
-        <%= item.name %></p><br>
-        <%= item.show_price %><br>
+        <h1><%= item.name %></h1>
+        <span><%= item.show_price %></span>
         <form action="/carts/<%= item.id %>" method="post">
           <input type="hidden" name="_method" value="patch">
-          Quantity: <input type="integer" name="quantity" value="<%= @user.cart.items.select {|i| i.name == item.name}.count %>">
-          <input type="submit" value="Update">
+          Quantity: <input type="integer" class="text-field" name="quantity" value="<%= @user.cart.items.select {|i| i.name == item.name}.count %>">
+          <input type="submit" class="button" value="Update">
         </form>
         <form action="/carts/<%= item.id %>" method="post">
           <input type="hidden" name="_method" value="delete">
-          <input type="submit" value="Delete Item">
+          <input type="submit" class="buttons" value="Delete Item">
         </form>
       </div>
     <% end %>
