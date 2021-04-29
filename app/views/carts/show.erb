@@ -19,14 +19,14 @@
       </div>
     <% end %>
   <% end %>
-
-  <div class="placeorder-box" id="placeorder">
-    <% unless @cart.items.empty? %>
+  
+  <% unless @cart.items.empty? %>
+    <div class="placeorder-box" id="placeorder">
       <h2>Funds: <%= @cart.user.show_funds %></h2>
       <h2>Order Total: $<%= @cart.total %></h2>
       <form action="/placeorder/<%= @cart.id %>" method="post">
         <input type="submit" value="Place Order">
       </form>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </section>

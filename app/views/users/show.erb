@@ -8,7 +8,9 @@
       <% @user.listings[-1..-1].each do |item| %>
         <% if item != nil %>
           <div class="item-box" id="users-listings-item-box">
-            <a href="/items/<%= item.id %>"><%= item.name %><br><%= item.show_price %><br><%= item.stock %></a>
+            <span><a href="/items/<%= item.id %>"><%= item.name %></a></span>
+            <span><%= item.show_price %></span>
+            <span>Stock:<%= item.stock %></span>
           </div>
         <% end %>
       <% end %>
