@@ -67,6 +67,12 @@ body {
   border: solid yellow 1px;
   /* width: 100%; */
   margin: 0px 20px 20px 20px;
+  display: flex;
+
+  /* New  */
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
 
 /* @media (min-widht: 1200px) {
@@ -177,9 +183,11 @@ section.form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding: 20px;
   background: white;
+  
+  /* justify-content: center; */
 }
 
 /* Login and Sign Up forms */
@@ -246,58 +254,50 @@ section.form {
 
 /* NEW ITEM and EDIT ITEM forms */
 
-.form #new-tem {
-  max-width: 32rem;
-}
-
 .form#new-item {
   max-width: 32rem;
   border-radius: 0.25rem;
   /* text-align: center; */
 }
 
+/* .centered-content {
+  width: 600px;
+  border: 4px blue solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+} */
+
 .form-control {
-  margin: 0 auto;
+  /* margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  background: white; */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  align-content: stretch;
+  justify-content: stretch;
+  padding: 20px;
   background: white;
-
 }
 
 .form-partitions {
   display: block;
-  /* flex-direction: column;
-  align-items: center; */
-
-  /* justify-content: center; */
-  /* margin: 0 auto; */
-  /* padding: 20px; */
-  /* background: white; */
 }
 
 .form-partitions div {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
 }
-
-/* .form#new-item, 
-.form#edit-item {
-  max-width: 32rem; 
-  border-radius: 0.25rem;
-} */
 
 #edit-item {
   width: 32rem; 
+  /* width: 22rem;  USE THIS FOR MOBLIE SCREEN WIDTH */
   border-radius: 0.25rem;
-}
-
-#edit-item #name {
-  /* width: auto; */
-  
-
 }
 
 #edit-item h1 {
@@ -305,41 +305,26 @@ section.form {
   margin-bottom: 10px;
 }
 
-#edit-item #price,
-#edit-item #stock {
-  /* width: 50%; */
+#edit-item #name-row {
+  align-items: stretch;
 }
 
-.row  {
-  /* display: flex;
-  flex-direction: column;
-  align-items: stretch; */
-}
-
-/* .row#stock-row,
-.row#price-row {
-  float: right;
-} */
-
-/* #edit-item span {
-  margin: 0 auto;
-  float: center; 
-} */
-
-/* .form-sections {
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-} */
-
-/* div #refeence {
-  border: 5px pink solid;
-} */
-
-/* Custom style for text-fields in ITEMS/NEW, and ITEMS/EDIT views */
-/* .form#edit-item .text-field {
+#edit-item .hr {
+  display: inline-block;
   
-} */
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 .button#cancel {
   color: black;
@@ -356,7 +341,7 @@ section.form {
 /* SHOW/ITEM view */
 
 .form#show-item {
-  max-width: 20rem;
+  width: 20rem;
 }
 
 .button#edit-listing {
@@ -402,7 +387,6 @@ section.form {
 /* START BOXES SECTIONS (in this style sheet, any view that contains more than one box is classified as a boxes section) */
 
 /* Base style for all item boxes and the placeorder-box */
-
 .item-box, 
 .placeorder-box {
   display: flex;
@@ -534,7 +518,7 @@ section.form {
 
 #sessions-listings-item-box, 
 #sessions-purchases-item-box {
-  max-width: 20rem; 
+  width: 20rem; 
   margin: 0 auto;
   margin-bottom: 1.25rem;
 }
