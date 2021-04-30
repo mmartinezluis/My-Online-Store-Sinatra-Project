@@ -173,7 +173,6 @@ ul {
 /* START FORM SECTIONS (in this stylehseet, any view that consits of a single box is considered a form) */
 
 /* Base style for all forms */
-
 section.form {
   display: flex;
   flex-direction: column;
@@ -203,7 +202,6 @@ section.form {
 }
 
 /* Base style for all text-fields */
-
 .text-field {
   height: 42px;
   width: 100%;
@@ -237,7 +235,7 @@ section.form {
   width: 100%;
 }
 
-/* horizontal line */
+/* horizontal line in forms */
 
 .hr {
   border-bottom: 1px solid var(--gray);
@@ -246,32 +244,102 @@ section.form {
   width: 100%;
 }
 
-/* New-item and Edit-item forms */
+/* NEW ITEM and EDIT ITEM forms */
 
-.form#new-item, 
-.form#edit-item {
+.form #new-tem {
+  max-width: 32rem;
+}
+
+.form#new-item {
   max-width: 32rem;
   border-radius: 0.25rem;
   /* text-align: center; */
 }
 
-.form-sections {
+.form-control {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
+  background: white;
+
 }
 
-/* Custom style for text-fields in items/new, items/edit views */
-#stock.text-field,
-#price.text-field {
-  height: 2rem;
-  width: 25%;
-  padding: 12px 20px;
-  margin: 5px 0 20px 0;
-  font-size: 1rem;
-  border-radius: 4px;
-  text-align: center;
+.form-partitions {
+  display: block;
+  /* flex-direction: column;
+  align-items: center; */
+
+  /* justify-content: center; */
+  /* margin: 0 auto; */
+  /* padding: 20px; */
+  /* background: white; */
 }
+
+.form-partitions div {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* .form#new-item, 
+.form#edit-item {
+  max-width: 32rem; 
+  border-radius: 0.25rem;
+} */
+
+#edit-item {
+  width: 32rem; 
+  border-radius: 0.25rem;
+}
+
+#edit-item #name {
+  /* width: auto; */
+  
+
+}
+
+#edit-item h1 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#edit-item #price,
+#edit-item #stock {
+  /* width: 50%; */
+}
+
+.row  {
+  /* display: flex;
+  flex-direction: column;
+  align-items: stretch; */
+}
+
+/* .row#stock-row,
+.row#price-row {
+  float: right;
+} */
+
+/* #edit-item span {
+  margin: 0 auto;
+  float: center; 
+} */
+
+/* .form-sections {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+} */
+
+/* div #refeence {
+  border: 5px pink solid;
+} */
+
+/* Custom style for text-fields in ITEMS/NEW, and ITEMS/EDIT views */
+/* .form#edit-item .text-field {
+  
+} */
 
 .button#cancel {
   color: black;
@@ -285,7 +353,7 @@ section.form {
   border: 1px solid gray;
 }
 
-/* Show-item view */
+/* SHOW/ITEM view */
 
 .form#show-item {
   max-width: 20rem;

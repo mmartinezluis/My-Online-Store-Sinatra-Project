@@ -1,26 +1,44 @@
 <%= erb :'partials/error' %>
-<section class="form" id="edit-item">
+<section class="form-control" id="edit-item">
   <h1>Editing Listing</h1>
   <form action="/items/<%= @item.id %>" method="post">
-    <div class="form-sections">
-    <input type="hidden" id="hidden" name="_method" value="patch">
-    <span>
-    <label>Item Name</label>
-    <input type="text" name="name" value="<%= @item.name %>" class="text-field" id="name">
-    </span>
-    <span>
-      <label>Item Price</label>
-      <input type="text" name="price" value="<%= @item.price %>" class="text-field" id="price">
-    </span>
-    <span>
-      <label>Item Stock</label>
-      <input type="integer" name="stock" value="<%= @item.stock %>" class="text-field" id="stock">
-    </span>
-    <input type="submit" value="Update listing" class="button">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  <div  class="form-partitions">
+    <div class="row">    
+      <div>
+        <label>Item Name</label>
+      </div>
+      <div>
+        <input type="text" name="name" value="<%= @item.name %>" class="text-field" id="name">
+      </div>
     </div>
-  </form>
-  <div class="hr" id="horizontal-line-login"></div>
-  <a href="/users/<%= current_user.slug %>"><input type="button" value="Cancel" class="button" id="cancel"></a>
+
+    <div class="row" id="price-row">
+      <div>
+        <label>Item Price</label>
+      </div>
+      <div>
+        <input type="text" name="price" value="<%= @item.price %>" class="text-field" id="price">
+      </div>
+    </div>
+
+    <div class="row" id="stock-row">
+      <div>
+        <label>Item Stock</label>
+      </div>
+      <div>
+        <input type="integer" name="stock" value="<%= @item.stock %>" class="text-field" id="stock">
+      </div>
+    </div>
+
+    <div>
+      <input type="submit" value="Update listing" class="button">
+    </div>
+    <div>
+    <div class="hr" id="horizontal-line-login"></div>
+    <a href="/users/<%= current_user.slug %>"><input type="button" value="Cancel" class="button" id="cancel"></a>
+    </div>
+  </div>
 </section>
 
 
