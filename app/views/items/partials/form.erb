@@ -1,9 +1,9 @@
 
-
-  <h1><%= @item.save ? 'Editing Listing' : 'New Listing' %></h1>
-  <form action="<%= @item.save ? '/items/@item.id' : '/items' %>" method="post">
-    <% '<input type="hidden" id="hidden" name="_method" value="patch">' if @item.save %>
+<h1><%= @item.save ? 'Editing Listing' : 'New Listing' %></h1>
+<form action='<%= @item.save ? "/items/#{@item.id}" : "/items" %>' method="post">
+  <%= '<input type="hidden" id="hidden" name="_method" value="patch">' if @item.save %>
   <div  class="form-partitions">
+
     <div class="row" id="name-row">    
       <div>
         <label>Item Name</label>
@@ -31,19 +31,19 @@
       </div>
     </div>
 
-    <div class="row" id="update-listing">
+    <div class="row" id="<%= @item.save ? 'update-listing' : 'create-listing' %>">
       <input type="submit" value="<%= @item.save ? 'Update Listing' : 'Create Listing' %>" class="button" >
     </div>
-    
-  <div>
-    <div class="hr" id="horizontal-line-login"></div>
-  
-  <div>
-</form>
-<div class="row" id="cancel">
 
-<a href="<%= @item.save ? '/items/@item.id' : '/users/@user.slug' %>" ><input type="button" value="Cancel" class="button" id="cancel"></a>
-</div>
+    <div>
+      <div class="hr" id="horizontal-line-login"></div>
+      <div class="row" id="cancel">
+        <a href='<%= @item.save ? "/items/#{@item.id}" : "/users/#{current_user.slug}" %>' ><input type="button" value="Cancel" class="button" id="cancel"></a>
+      </div>
+    </div>
+  </dov>
+</form>
+
 
 
 
