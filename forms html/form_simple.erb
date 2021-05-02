@@ -1,0 +1,14 @@
+<section class="form-simple" id="new-item">
+  <h1>New Listing</h1>
+  <form action="/items" method="post">
+    <label>Item Name</label>
+    <input type="text" name="name" class="text-field">
+    <label>Item Price</label>
+    <input type="text" name="price" class="text-field">
+    <label>Item Stock</label>
+    <input type="integer" name="stock" class="text-field">
+    <input type="submit" value="Create Listing" class="button" id="create-listing">
+  </form>
+  <div class="hr" id="horizontal-line-login"></div>
+  <a href="/users/<%= current_user.slug %>"><input type="button" value="Cancel" class="button" id="cancel"></a>
+</section>

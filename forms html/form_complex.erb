@@ -1,17 +1,15 @@
 
-<%= erb :'partials/error' %>
-
 <section class="form-complex" id="edit-item">
-  <h1><%= @item.save ? 'Editing Listing' : 'New Listing' %></h1>
+  <h1>Editing Listing</h1>
   <form action="/items/<%= @item.id %>" method="post">
-    <input type="hidden" id="hidden" name="_method" value="patch">
+  <input type="hidden" id="hidden" name="_method" value="patch">
   <div  class="form-partitions">
     <div class="row" id="name-row">    
       <div>
         <label>Item Name</label>
       </div>
       <div>
-        <input type="text" name="name" value="<%= @item.name if @item.save %>" class="text-field" id="name">
+        <input type="text" name="name" value="<%= @item.name %>" class="text-field" id="name">
       </div>
     </div>
 
@@ -20,7 +18,7 @@
         <label>Item Price</label>
       </div>
       <div>
-        <input type="text" name="price" value="<%= @item.price if @item.save %>" class="text-field" id="price">
+        <input type="text" name="price" value="<%= @item.price %>" class="text-field" id="price">
       </div>
     </div>
 
@@ -29,14 +27,13 @@
         <label>Item Stock</label>
       </div>
       <div>
-        <input type="integer" name="stock" value="<%= @item.stock if @item.save %>" class="text-field" id="stock">
+        <input type="integer" name="stock" value="<%= @item.stock %>" class="text-field" id="stock">
       </div>
     </div>
 
     <div class="row" id="update-listing">
-      <input type="submit" value="<%= @item.save ? 'Update Listing' : 'Create Listing' %>" class="button" >
+      <input type="submit" value="Update Listing" class="button" >
     </div>
-  </form>
   <div>
     <div class="hr" id="horizontal-line-login"></div>
     <div class="row" id="cancel">
@@ -45,6 +42,4 @@
   <div>
   </div>
 </section>
-
-
 

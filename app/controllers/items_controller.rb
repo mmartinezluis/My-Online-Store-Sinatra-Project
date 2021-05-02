@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
 
   get '/items/new' do
     redirect_if_not_logged_in
+    @item= Item.new
     erb :'items/new'
   end
 

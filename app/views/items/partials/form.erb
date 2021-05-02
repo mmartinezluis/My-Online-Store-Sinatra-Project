@@ -1,10 +1,8 @@
-
-<%= erb :'partials/error' %>
-
 <section class="form-complex" id="edit-item">
+
   <h1><%= @item.save ? 'Editing Listing' : 'New Listing' %></h1>
-  <form action="/items/<%= @item.id %>" method="post">
-    <input type="hidden" id="hidden" name="_method" value="patch">
+  <form action="<%= @item.save ? '/items/<%= @item.id %>' : '/items' %>" method="post">
+    <= <input type="hidden" id="hidden" name="_method" value="patch"> if @item.savve %>
   <div  class="form-partitions">
     <div class="row" id="name-row">    
       <div>
@@ -36,14 +34,14 @@
     <div class="row" id="update-listing">
       <input type="submit" value="<%= @item.save ? 'Update Listing' : 'Create Listing' %>" class="button" >
     </div>
-  </form>
+    </form>
   <div>
     <div class="hr" id="horizontal-line-login"></div>
     <div class="row" id="cancel">
-    <a href="/items/<%= @item.id %>"><input type="button" value="Cancel" class="button" id="cancel"></a>
+    <a href="<%= @item.save ? : '/items/<%= @item.id' : '/users/<%= current_user.slug' %>"><input type="button" value="Cancel" class="button" id="cancel"></a>
     </div>
   <div>
-  </div>
+</div>
 </section>
 
 

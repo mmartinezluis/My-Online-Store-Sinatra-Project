@@ -254,73 +254,44 @@ section.form {
 
 /* NEW ITEM and EDIT ITEM forms */
 
-.form#new-item {
+/* .form#new-item {
   max-width: 32rem;
   border-radius: 0.25rem;
-  /* text-align: center; */
-}
-
-/* .centered-content {
-  width: 600px;
-  border: 4px blue solid;
-  display: flex;
-  flex-direction: column;
-  align-items: center;  
 } */
 
-.form-control {
-  /* margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background: white; */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  align-content: stretch;
-  justify-content: stretch;
+.form-complex {
   padding: 20px;
   background: white;
-}
-
-.form-partitions {
-  display: block;
-}
-
-.form-partitions div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#edit-item {
-  width: 32rem; 
+  width: 32rem;
   /* width: 22rem;  USE THIS FOR MOBLIE SCREEN WIDTH */
   border-radius: 0.25rem;
 }
 
-#edit-item h1 {
+.form-complex .form-partitions div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-complex h1 {
   text-align: center;
   margin-bottom: 10px;
 }
 
-#edit-item #name-row {
+.form-complex #name-row, 
+.form-complex #price-row, 
+.form-complex #stock-row {
   align-items: stretch;
 }
 
-#edit-item .hr {
-  display: inline-block;
-  
+.form-complex .text-field#price, 
+.form-complex .text-field#stock {
+  width: 60%;
+} 
+
+.form-complex #update-listing .button {
+  width: 50%;
 }
-
-
-
-
-
-
-
-
 
 
 

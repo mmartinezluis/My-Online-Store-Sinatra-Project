@@ -1,0 +1,145 @@
+
+/* Base style for text-fields, buttons, and horizontal line */
+:root {
+  --main-blue: #45567d;
+}
+
+  .text-field {
+    height: 42px;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 5px 0 20px 0;
+    font-size: 1rem;
+    border-radius: 4px;
+  }
+
+  .button {
+    background-color: #008CBA;;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    margin: 8px 0;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+  }
+  
+  .button:hover {
+    background-color: var(--main-blue);
+  }
+
+  .hr {
+    border-bottom: 1px solid var(--gray);
+    display: flex;
+    margin: 1.25rem;
+    width: 100%;
+  }
+
+  .button#cancel {
+    color: black;
+    background: none;
+    border: 1px solid gray;
+  }
+  
+  .button#cancel:hover {
+    color: white;
+    background: gray;
+    border: 1px solid gray;
+  }
+
+
+/* START Simple Form */
+
+  .form-simple {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: white;
+    max-width: 32rem;
+    border-radius: 0.25rem;
+  }
+
+/* END Simple Form */
+
+/* START Complex Forms */
+
+/* Complex form with same design as the Simple Form */
+
+.form-complex {
+  padding: 20px;
+  background: white;
+  width: 32rem; 
+  border-radius: 0.25rem;
+}
+
+.form-complex .form-partitions div {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+.form-complex h1 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+/* Copmlex form centralized */
+
+.form-complex-centralized {
+    padding: 20px;
+    background: white;
+    width: 32rem; 
+    border-radius: 0.25rem;
+  }
+  
+.form-complex-centralized .form-partitions div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Cpmplex form centralized with customized widths for text fields within flex-box  */
+
+.form-complex-custom {
+    padding: 20px;
+    background: white;
+    width: 32rem; 
+    border-radius: 0.25rem;
+  }
+
+/* make each sectio of the form a flex box and centralize the sections */
+.form-complex-custom .form-partitions div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-complex-custom h1 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+/* make the below text fileds occupy the whole space horizontally (width of text fields: 100%)  */
+.form-complex-custom #name-row, 
+.form-complex-custom #price-row, 
+.form-complex-custom #stock-row {
+  align-items: stretch;
+}
+
+/* let the price and stock text fields only occupy 60% of the full width of the container */
+.form-complex-custom .text-field#price, 
+.form-complex-custom .text-field#stock {
+  width: 60%;
+} 
+
+/* let the update button only occupy 50% of the full width of the container */
+.form-complex-custom #update-listing .button {
+  width: 50%;
+}
+
+/* END Complex Forms */
