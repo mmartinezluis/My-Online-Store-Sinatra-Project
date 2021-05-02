@@ -1,12 +1,5 @@
 
 <%= erb :'partials/error' %>
 <section class="form-complex" id="new-item">
-<div  class="form-partitions">
-  <div class="row" id="name-row">    
-  <h1>New Listing</h1>
-  <form action="/items" method="post">
-    <div  class="form-partitions">
-      <%= erb :'items/partials/form' %>
-    </div>
-
+  <%= erb :'items/partials/form' %>
 </section>

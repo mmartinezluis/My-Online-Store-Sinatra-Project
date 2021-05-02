@@ -1,8 +1,8 @@
-<section class="form-complex" id="edit-item">
+
 
   <h1><%= @item.save ? 'Editing Listing' : 'New Listing' %></h1>
-  <form action="<%= @item.save ? '/items/<%= @item.id %>' : '/items' %>" method="post">
-    <= <input type="hidden" id="hidden" name="_method" value="patch"> if @item.savve %>
+  <form action="<%= @item.save ? '/items/@item.id' : '/items' %>" method="post">
+    <% '<input type="hidden" id="hidden" name="_method" value="patch">' if @item.save %>
   <div  class="form-partitions">
     <div class="row" id="name-row">    
       <div>
@@ -34,15 +34,17 @@
     <div class="row" id="update-listing">
       <input type="submit" value="<%= @item.save ? 'Update Listing' : 'Create Listing' %>" class="button" >
     </div>
-    </form>
+    
   <div>
     <div class="hr" id="horizontal-line-login"></div>
-    <div class="row" id="cancel">
-    <a href="<%= @item.save ? : '/items/<%= @item.id' : '/users/<%= current_user.slug' %>"><input type="button" value="Cancel" class="button" id="cancel"></a>
-    </div>
+  
   <div>
+</form>
+<div class="row" id="cancel">
+
+<a href="<%= @item.save ? '/items/@item.id' : '/users/@user.slug' %>" ><input type="button" value="Cancel" class="button" id="cancel"></a>
 </div>
-</section>
+
 
 
 
