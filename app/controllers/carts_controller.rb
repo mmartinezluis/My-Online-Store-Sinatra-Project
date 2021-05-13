@@ -17,9 +17,9 @@ class CartsController < ApplicationController
   end
 
   get '/carts/:id' do
+    authorized_cart_view?                 # Defined in applciation controller
     @cart= Cart.find(params[:id])
     @user = current_user
-    authorized_cart_view?                 # Defined in applciation controller
     @uniq_items= @cart.uniq_items
     erb :'carts/show'
   end

@@ -2,12 +2,6 @@ class ItemsController < ApplicationController
   #before_action :require_login                                     <---------- implement
   #skip_before_action :require_login, only: [:index]
   
-  # ['/join', "/join/*", "/payment/*"].each do |path|
-  #   before path do
-  #       #some code
-  #   end
-  # end
-
   # def require_login                                               <--------- implement
   #   return head(:forbidden) unless session.include? :user_id
   # end
@@ -48,6 +42,7 @@ class ItemsController < ApplicationController
   end
 
   get '/items/:id/edit' do
+    authorized_item_view?
     @item= Item.find(params[:id])
     erb :'items/edit_item'
   end
@@ -70,11 +65,10 @@ class ItemsController < ApplicationController
   end
 
   delete '/items/:id' do
+    authorized_item_view?
     @item = Item.find(params[:id])
-    if @item.user == current_user
-      @item.all_stock.each do |item|
-        item.delete
-      end
+    @item.all_stock.each do |item|
+      item.delete
     end
     redirect to "/users/#{current_user.slug}"
   end
@@ -83,11 +77,10 @@ class ItemsController < ApplicationController
   helpers  do
     def no_empty_params?
       unless !params[:name].empty? && !params[:price].empty? && !params[:stock].empty?
+        flash[:message]= ["All fields must be completed"]
         if @item
-          flash[:message]= ["All fields must be completed"]
           redirect to "/items/#{@item.id}/edit"
         else
-          flash[:message]= ["All fields must be completed"]
           redirect to "/items/new"
         end
       end
@@ -95,11 +88,10 @@ class ItemsController < ApplicationController
 
     def valid_stock?
       unless (1..99).include?(params[:stock].to_i)
+        flash[:message]= ["Stock must be between 1 and 99"]
         if @item
-          flash[:message]= ["Stock must be between 1 and 99"]
           redirect to "/items/#{@item.id}/edit"
         else
-          flash[:message]= ["Stock must be between 1 and 99"]
           redirect to "/items/new"
         end
       end
