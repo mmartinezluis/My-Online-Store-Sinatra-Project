@@ -1,7 +1,6 @@
 class CartsController < ApplicationController
 
   get '/add_item/:id' do
-    redirect_if_not_logged_in
     @cart= current_user.cart
     @item= Item.find(params[:id])
     @cart.items << @item
@@ -10,7 +9,6 @@ class CartsController < ApplicationController
   end
 
   get '/buy/:id' do
-    redirect_if_not_logged_in
     @cart = current_user.cart
     @item= Item.find(params[:id])
     @cart.items << @item
@@ -19,7 +17,6 @@ class CartsController < ApplicationController
   end
 
   get '/carts/:id' do
-    redirect_if_not_logged_in
     @cart= Cart.find(params[:id])
     @user = current_user
     authorized_cart_view?                 # Defined in applciation controller
@@ -29,7 +26,6 @@ class CartsController < ApplicationController
   
   # UPDATE action for cart model
   patch '/carts/:id' do
-    redirect_if_not_logged_in
     @cart = current_user.cart
     @item= @cart.items.find { |i| i.id == params[:id].to_i }
     unless @item.stock > 0
@@ -55,7 +51,6 @@ class CartsController < ApplicationController
   end
 
   post '/placeorder/:id' do
-    redirect_if_not_logged_in
     @user= current_user
     @cart = Cart.find(params[:id])
     if @cart.out_of_stock_items != []
@@ -77,7 +72,6 @@ class CartsController < ApplicationController
   end
 
   delete '/carts/:id' do
-    redirect_if_not_logged_in
     @cart= current_user.cart
     @item= @cart.items.find { |i| i.id == params[:id].to_i }
     @cart.items.delete_if {|i| i.id == @item.id}

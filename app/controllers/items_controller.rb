@@ -13,20 +13,16 @@ class ItemsController < ApplicationController
   # end
 
   get '/items' do
-    redirect_if_not_logged_in
     @items= Item.all
     erb :'items/index'
   end
 
   get '/items/new' do
-    redirect_if_not_logged_in
     @item= Item.new
-    @user = current_user
     erb :'items/new'
   end
 
-  post '/items' do
-    redirect_if_not_logged_in                                                                              #Third, if the stock if out of range, reload the form (incalid stock input)
+  post '/items' do                                                                                            #Third, if the stock if out of range, reload the form (incalid stock input)
     no_empty_params?                                                                                           #It might be that the user is putting info for a listing that already exiists in the user's listings                                                                               
     valid_stock?                                                                                             #First, check whether the user is logged in; if not, redirect to login                                                                                              
     if item_already_exists? 
@@ -42,9 +38,13 @@ class ItemsController < ApplicationController
   end
 
   get '/items/:id' do
-    redirect_if_not_logged_in
-    @item= Item.find(params[:id])
-    erb :'items/show_item'
+    @item = Item.find_by(id: params[:id])
+    if @item
+      erb :'items/show_item'
+    else
+      flash[:message] = ["Item not found"]
+      redirect to "/items"
+    end
   end
 
   get '/items/:id/edit' do
@@ -52,8 +52,9 @@ class ItemsController < ApplicationController
     erb :'items/edit_item'
   end
 
-  patch '/items/:id' do                           #THe logic here is a little bit complex; if a user wants to edit a listing, the the appplication has to find all of the instances of the corresponding                       
-    redirect_if_not_logged_in                     # (cont.) item in that listing, change the attributes of those instances using the user's params, and then make copies or delete copies of those instances if the params stock is greater or lower than the original stock.                           
+  #THe logic here is a little bit complex; if a user wants to edit a listing, the the appplication has to find all of the instances of the corresponding                       
+  # (cont.) item in that listing, change the attributes of those instances using the user's params, and then make copies or delete copies of those instances if the params stock is greater or lower than the original stock.                           
+  patch '/items/:id' do                                                             
     @item = Item.find(params[:id])
     no_empty_params?
     valid_stock?
@@ -69,7 +70,6 @@ class ItemsController < ApplicationController
   end
 
   delete '/items/:id' do
-    redirect_if_not_logged_in
     @item = Item.find(params[:id])
     if @item.user == current_user
       @item.all_stock.each do |item|

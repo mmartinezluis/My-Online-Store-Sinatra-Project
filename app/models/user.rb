@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   validates_presence_of :username, :email  
-  validates :password, presence: true, on: :post   #or "on: :create"
+  validates :password, presence: true, on: :post  
   has_secure_password
   validates :username, uniqueness: true
   has_many :items

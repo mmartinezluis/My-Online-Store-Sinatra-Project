@@ -9,6 +9,12 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
+  ['/users/*', "/items", "/items/*", "/carts/", "/placeorder/*"].each do |path|
+    before path do
+      redirect_if_not_logged_in
+    end
+  end
+
   get '/' do 
     erb :index
   end
@@ -21,7 +27,7 @@ class ApplicationController < Sinatra::Base
   helpers do
     def redirect_if_not_logged_in
       if !logged_in?
-        flash[:message] = "You must be logged in to perform this action"
+        flash[:message] = ["You must be logged in to perform this action"]
         redirect to '/login'
       end
     end
