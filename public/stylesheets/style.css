@@ -33,8 +33,6 @@
   padding: 0;
 }
 
-/* box-sizing and font sizing */
-
 *,
 *::before,
 *::after {
@@ -53,26 +51,23 @@ header {
 body {
   background: #f2f4f8;
   border: solid  2px green;
+  /* font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+  font-family: sans-serif;
   font-size: 1rem; 
   font-weight: 400;
   line-height: 1.5;
   box-sizing: inherit;
-/* 
-  width: 100%;
-  height: 100%; */
   margin: 0;
+  color: #455a64;
 }
 
 .main-container {
   border: solid yellow 1px;
-  /* width: 100%; */
   margin: 0px 20px 20px 20px;
   display: flex;
-
-  /* New  */
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* @media (min-widht: 1200px) {
@@ -105,10 +100,12 @@ align-items: center;
   }
 } */
 
+/* h1, h2, h3, h4, h5, h6, p {
+  margin-bottom: 0.5rem;
+} */
 
 a {
   text-decoration: none; 
-  
 }
 
 ul {
@@ -183,11 +180,9 @@ section.form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin: 0 auto; */
   padding: 20px;
   background: white;
-  
-  /* justify-content: center; */
+  border-radius: 0.25rem;
 }
 
 /* Login and Sign Up forms */
@@ -196,7 +191,7 @@ section.form {
 .form#signup-box {
   padding: 2.5rem;
   max-width: 300px;
-  box-shadow: 0 1rem 1rem -0.75rem 
+  box-shadow: 0 1rem 1rem -0.75rem; 
 }
 
 #login-box h1,
@@ -219,6 +214,7 @@ section.form {
   border-radius: 4px;
 }
 
+/* Base style for all buttons */
 .button {
   background-color: #008CBA;;
   color: white;
@@ -244,109 +240,11 @@ section.form {
 }
 
 /* horizontal line in forms */
-
 .hr {
   border-bottom: 1px solid var(--gray);
   display: flex;
   margin: 1.25rem;
   width: 100%;
-}
-
-/* NEW ITEM and EDIT ITEM forms */
-
-/* .form#new-item {
-  max-width: 32rem;
-  border-radius: 0.25rem;
-} */
-
-.form-complex {
-  padding: 20px;
-  background: white;
-  width: 32rem;
-  /* width: 22rem;  USE THIS FOR MOBLIE SCREEN WIDTH */
-  border-radius: 0.25rem;
-}
-
-.form-complex .form-partitions div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.form-complex h1 {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.form-complex #name-row, 
-.form-complex #price-row, 
-.form-complex #stock-row {
-  align-items: stretch;
-}
-
-.form-complex .text-field#price, 
-.form-complex .text-field#stock {
-  width: 60%;
-} 
-
-.form-complex #update-listing .button {
-  width: 50%;
-}
-
-.button#cancel {
-  color: black;
-  background: none;
-  border: 1px solid gray;
-}
-
-.button#cancel:hover {
-  color: white;
-  background: gray;
-  border: 1px solid gray;
-}
-
-/* SHOW/ITEM view */
-
-.form#show-item {
-  width: 20rem;
-}
-
-.button#edit-listing {
-  color: green;
-  background: white;
-  border: 1px solid green;
-}
-
-.button#edit-listing:hover {
-  color: white;
-  background: var(--green);
-  border: 1px solid var(--green);
-}
-
-.button#delete {
-  color: red;
-  background: white;
-  border: 1px solid red;
-}
-
-.button#delete:hover {
-  color: white;
-  background: var(--danger);
-  border: 1px solid var(--danger);
-}
-
-.button#add-item,
-.button#buy-now {
-  color: white;
-  background: orange;
-  border: 1px solid orange;
-}
-
-.button#add-item:hover,
-.button#buy-now:hover {
-  color: white;
-  background: var(--yellow);
-  border: 1px solid var(--yellow);
 }
 
 /* END FORM SECTIONS */
@@ -362,132 +260,35 @@ section.form {
   padding: 1.25rem;;
   background: white;
   text-align: center;
+  border-radius: 0.25rem;
 }
 
-/* Items/index view */
 
-#items-index {
-  margin: 0 3rem 3rem 3rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  /* grid-template-rows: 17rem; */
-  justify-content: center;
-  /* justify-items: center; */
-  gap: 3rem 3rem;
-  /* grid-template-areas:  */
-}
+/* ITEMS START */
 
-@media (max-width: 700px) {
-  #items-index {
-    grid-template-columns: 11rem 11rem;
-    grid-template-columns: 1fr 1fr;
-  }
-}
+/* ITEMS END */
 
-@media (max-width: 500px) {
-  #items-index {
-    grid-template-columns:  13rem;
-    grid-template-columns:  1fr;
-  }
-}
 
-/* Custom style for item-box within the items/index view */
+/* CARTS/SHOW STRAT */
 
-#items-index .item-box {
-  border: solid black 2px;
-  /* align content vertically */
-  /* justify-content: center; */
-  padding: 1.25rem 0.5rem;
-  /* justify-self: stretch; */
-}
+/* CARTS/SHOW END */
 
-/* Carts/show view */
 
-#carts-show {
-  display: grid;
-  grid-template-columns: 65%;
-  gap: 0rem 3rem;
-  margin: 0 3rem 3rem 3rem;
-}
+/* USERS/SHOW START */
 
-@media (max-width: 700px) {
-  #carts-show {
-    grid-template-columns: 55%;
-  }
-  #placeorder h2 {
-    font-size: 1rem;
-  }
-}
+/* USERS/SHOW END */
 
-@media (max-width: 700px) {
-  #placeorder {
-    grid-column: 2;
-    
-    border: solid red 2px;
-  }
-}
 
-@media (max-width: 500px) {
-  #carts-show {
-    grid-template-columns: 45%;
-  }
-}
-
-@media (max-width: 500px) {
-  #placeorder {
-    grid-column: 2;
-    border: solid red 2px;
-  }
-}
-
-#carts-show .item-box {
-  grid-column: 1;
-  text-align: center;
-  border: solid blue 2px;
-} 
-
-#carts-show .placeorder-box {
-  grid-column: 2;
-  grid-row: 1;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  flex-direction: column;
-  line-height: 3rem;
-  border: solid pink 2px;
-} 
-
-/* Users/show view */
-
-#users-show {
-  display: flex;
-  flex-wrap: wrap;
-  /* align-items: center; */
-  justify-content: space-around;   /*For a SINGLE LINE, lieaves space on the left and right sides of each of the flex containers
-  /* align-content: space-around; */
-  /* align-items: baseline; */
-}
-
-#users-show .item-box {
-  border: solid red 2px;
-  margin: 0rem 1rem 2rem 1rem;
-} 
-
-/* #sessions-listings, 
-#sessions-purchases {
-  display: grid;
-  grid-template-columns: 1;
-  justify-items: center;
-  gap: 20px;
-} */
-
-/* Sessions/listings and Sessions/purchases views */
+/* SESSIONS START */
 
 #sessions-listings-item-box, 
 #sessions-purchases-item-box {
-  width: 20rem; 
+  width: 25rem; 
   margin: 0 auto;
   margin-bottom: 1.25rem;
+  border: solid rgba(0,0,0,.125) 2px;
 }
+/* SESSIONS END */
+
 
 /* END BOXES SECTIONS */

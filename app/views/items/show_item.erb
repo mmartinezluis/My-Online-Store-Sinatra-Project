@@ -1,4 +1,5 @@
 <section class="form" id="show-item">
+  <% erb :'partials/error' %>
   <% if @item.status == "listing" && @item.user == current_user %>
     <p>Listing</p>
     <%= erb :'items/partials/show' %>
@@ -9,7 +10,6 @@
       <input type="submit" value="Delete" class="button" id="delete">
     </form>
   <% else %>
-    <% erb :'partials/error' %>
     <%= erb :'items/partials/show' %>
     <a href="/add_item/<%= @item.id %>" class="button" id="add-item">Add to Cart</a>
     <a href="/buy/<%= @item.id %>" class="button" id="buy-now">Buy Now</a>

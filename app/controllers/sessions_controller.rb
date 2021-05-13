@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  get '/all_my_listings' do
+  get '/all-my-listings' do
     if !logged_in?
       erb :'sessions/login'
     else

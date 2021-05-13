@@ -4,17 +4,22 @@
     <h3>Your cart is currently empty</h3>
   <% else %>
     <% @uniq_items.each do |item| %>
-      <div class="item-box" id="carts-item-box"> 
+      <div class="item-box" id="cart-item-box"> 
         <h1><%= item.name %></h1>
         <span><%= item.show_price %></span>
         <form action="/carts/<%= item.id %>" method="post">
           <input type="hidden" name="_method" value="patch">
-          Quantity: <input type="integer" class="text-field" name="quantity" value="<%= @user.cart.items.select {|i| i.name == item.name}.count %>">
-          <input type="submit" class="button" value="Update">
+          <p>Quantity:</p>
+          <div>
+            <input type="integer" class="text-field" id="item-quantity" name="quantity" value="<%= @cart.current_quantity(item) %>">
+          </div>
+          <div>
+            <input type="submit" class="button" id="cart-item-update" value="Update">
+          </div>
         </form>
         <form action="/carts/<%= item.id %>" method="post">
           <input type="hidden" name="_method" value="delete">
-          <input type="submit" class="buttons" value="Delete Item">
+          <input type="submit" class="button" id="delete" value="Delete Item">
         </form>
       </div>
     <% end %>
@@ -22,10 +27,18 @@
   
   <% unless @cart.items.empty? %>
     <div class="placeorder-box" id="placeorder">
-      <h2>Funds: <%= @cart.user.show_funds %></h2>
-      <h2>Order Total: $<%= @cart.total %></h2>
+      <h2>Funds:</h2> 
+      <span><%= @cart.user.show_funds %></span>
+      <h2>Order Total:</h2>
+      <span>$<%= @cart.total %></span>
       <form action="/placeorder/<%= @cart.id %>" method="post">
-        <input type="submit" value="Place Order">
+        <input type="submit" value="Place Order" class="button" id="placeorder-button">
+      </form>
+    </div>
+
+    <div id="extra-placeorder">
+      <form action="/placeorder/<%= @cart.id %>" method="post">
+        <input type="submit" value="Place Order" class="button" id="placeorder-button">
       </form>
     </div>
   <% end %>

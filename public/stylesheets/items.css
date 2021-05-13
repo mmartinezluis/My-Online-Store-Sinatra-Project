@@ -1,0 +1,130 @@
+/* ITEM/INDEX view */
+
+#items-index {
+    margin: 0 3rem 3rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    gap: 3rem 3rem;
+  }
+  
+  @media (max-width: 700px) {
+    #items-index {
+      grid-template-columns: 11rem 11rem;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    #items-index {
+      grid-template-columns:  13rem;
+      grid-template-columns:  1fr;
+    }
+  }
+  
+  /* Custom style for item-box within the items/index view */
+  #items-index .item-box {
+    border: 1px solid rgba(0,0,0,.125);
+    padding: 1.25rem 0.5rem;
+  }
+
+
+/* NEW ITEM and EDIT ITEM forms */
+
+.form-complex {
+    padding: 20px;
+    background: white;
+    width: 32rem;
+    /* width: 22rem;  USE THIS FOR MOBLIE SCREEN WIDTH */
+    border-radius: 0.25rem;
+  }
+
+  @media (max-width: 700px) {
+    .form-complex {
+      width: 22rem;
+    }
+  }
+  
+  .form-complex .form-partitions div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-complex h1 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .form-complex #name-row, 
+  .form-complex #price-row, 
+  .form-complex #stock-row {
+    align-items: stretch;
+  }
+  
+  .form-complex .text-field#price, 
+  .form-complex .text-field#stock {
+    width: 60%;
+  } 
+  
+  .form-complex #update-listing .button {
+    width: 50%;
+  }
+  
+  .button#cancel {
+    color: black;
+    background: none;
+    border: 1px solid gray;
+  }
+  
+  .button#cancel:hover {
+    color: white;
+    background: gray;
+    border: 1px solid gray;
+  }
+  
+/* ITEM/SHOW view */
+  
+  .form#show-item {
+    width: 25rem;
+    border: solid rgba(0,0,0,.125) 2px;
+    border-radius: 0.25rem;
+  }
+  
+  .button#edit-listing {
+    color: green;
+    background: white;
+    border: 1px solid green;
+  }
+  
+  .button#edit-listing:hover {
+    color: white;
+    background: var(--green);
+    border: 1px solid var(--green);
+  }
+  
+  .button#delete {
+    color: red;
+    background: white;
+    border: 1px solid red;
+  }
+  
+  .button#delete:hover {
+    color: white;
+    background: var(--danger);
+    border: 1px solid var(--danger);
+  }
+  
+  .button#add-item,
+  .button#buy-now {
+    color: white;
+    background: orange;
+    border: 1px solid orange;
+  }
+  
+  .button#add-item:hover,
+  .button#buy-now:hover {
+    color: white;
+    background: var(--yellow);
+    border: 1px solid var(--yellow);
+  }

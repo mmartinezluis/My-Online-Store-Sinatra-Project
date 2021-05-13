@@ -8,43 +8,34 @@
       <% @user.listings[-1..-1].each do |item| %>
         <% if item != nil %>
           <div class="item-box" id="users-listings-item-box">
+            <span>Most recent listing:</span>
             <span><a href="/items/<%= item.id %>"><%= item.name %></a></span>
             <span><%= item.show_price %></span>
             <span>Stock:<%= item.stock %></span>
           </div>
         <% end %>
       <% end %>
-    <a href="/all_my_listings" id="all-listing">All my listings</a>
+      <span><a href="/all-my-listings" id="all-listing">All my listings</a></span>
     <% end %>
-    <a href="/items/new" class="button" id="new-listing">Create new listing</a>
+    <a href="/items/new" class="button" id="new-listing">Create New listing</a>
   </div>
 
   <div class="item-box" id="users-purchases">
     <h1>Purchases</h1>
     <% if !@user.purchases.empty? %>
-      Most recent purchase:
+      <span>Most recent purchase:</span>
       <% @user.purchases[-1..-1].each do |item| %>
-        <%= item.name %><br><%= item.show_price %><br>Quantity: <%= item.quantity_purchased %><br><br>
+        <span><%= item.name %></span>
+        <span><%= item.show_price %></span>
+        <span>Quantity: <%= item.quantity_purchased %></span> 
       <% end %>
-      <a href="/purchases">All purchases</a>
+      <span><a href="/purchases">All purchases</a></span>
     <% else %>
-      You don't have any purchases yet
+      <p>You don't have any purchases yet</p>
     <% end %>
   </div>
 
   <div class="item-box" id="funds">
     <h1>Funds: <%= @user.show_funds %></h1>
-  </div>
-
-  <div class="item-box">
-    <h1>Hola, como estas?</h1>
-  </div>
-
-  <div class="item-box">
-    <h1>Hola. como estas?</h1>
-  </div>
-
-  <div class="item-box">
-    <h1>Hola, como estas?</h1>
   </div>
 </section>

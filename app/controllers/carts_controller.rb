@@ -41,11 +41,10 @@ class CartsController < ApplicationController
       new_quantity = params[:quantity].to_i - @cart.current_quantity(@item)
       if new_quantity > 0
         @cart.handle_item_add(new_quantity, @item)
-        flash[:message] = ["Item quantity updated"]
       elsif new_quantity < 0
         @cart.handle_item_subtract(new_quantity, @item)
-        flash[:message] = ["Item quantity updated"]
       end
+      flash[:message] = ["Item quantity updated"]
       redirect to "/carts/#{@cart.id}"
     end
   end

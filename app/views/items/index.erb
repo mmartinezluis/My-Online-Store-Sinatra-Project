@@ -5,14 +5,14 @@
     <div class="item-box" id="items-index-item-box">
       <% if item.user == current_user %>
         <div class="item-title">
-        <span><h1><%= item.name %></h1></span>
+          <h1><%= item.name %></h1>
         </div>
         <span><%= item.show_price %><br></span>
         <span>Seller: <%= item.user.username %><br></span>
         <span>Stock: <%= item.stock %></span>
       <% else %>
         <div class="item-title">
-        <span><h1><a href="/items/<%= item.id %>"><%= item.name %></a></h1></span>
+          <h1><a href="/items/<%= item.id %>"><%= item.name %></a></h1>
         </div>
         <span><%= item.show_price %><br></span>
         <span>Seller: <%= item.user.username %><br></span>

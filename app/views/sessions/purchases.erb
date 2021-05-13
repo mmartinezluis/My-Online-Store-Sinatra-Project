@@ -1,11 +1,11 @@
+<h1>All Purchases</h1>
 <section class="boxes" id="sessions-purchases">
-  <h1>All Purchases</h1>
   <% @user.purchases.each do |item| %>
     <div class="item-box" id="sessions-purchases-item-box">
       <h1><%= item.name %></h1>
-      <%= item.show_price %><br>
-      Quantity: <%= item.quantity_purchased %>
+      <span><%= item.show_price %></span>
+      <span>Quantity: <%= item.quantity_purchased %></span> 
     </div>
   <% end %>
-  <a href="/users/<%= @user.slug %>">Back to account</a>
+  <span><a href="/users/<%= @user.slug %>">Back to account</a></span>
 </section>

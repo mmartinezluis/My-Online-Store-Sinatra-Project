@@ -3,8 +3,8 @@
   <% @user.listings.each do |item| %>
     <div class="item-box" id="sessions-listings-item-box">
       <h1><%= item.name %></h1>
-      <%= item.show_price %><br>
-      Stock: <%= item.stock %>
+      <span><%= item.show_price %></span>
+      <span>Stock: <%= item.stock %></span> 
       <a href="/items/<%= item.id %>/edit" class="button" id="edit-listing">Edit Listing</a><div class="hr" id="horizontal-line-login"></div>
       <form action="/items/<%= item.id %>" method="post">
         <input type="hidden" id="hidden" name="_method" value="delete">

@@ -1,0 +1,10 @@
+#users-show {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;   /* For a SINGLE LINE, lieaves space on the left and right sides of each of the flex containers */
+  }
+  
+  #users-show .item-box {
+    border: solid rgba(0,0,0,.125) 2px;
+    margin: 0rem 2rem 2rem 2rem;
+  } 
