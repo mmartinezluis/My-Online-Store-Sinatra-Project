@@ -4,6 +4,7 @@
   --main-red: #be3144;
   --main-blue: #45567d;
   --main-gray: #303841;
+  --main-item-box-blue: #e7f2fa;
 
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -288,6 +289,7 @@ section.form {
   margin-bottom: 1.25rem;
   border: solid rgba(0,0,0,.125) 2px;
 }
+
 /* SESSIONS END */
 
 
