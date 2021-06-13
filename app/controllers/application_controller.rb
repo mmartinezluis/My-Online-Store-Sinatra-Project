@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
-  # Lines 13-16 mimic Rails 'before_action' method
+  # Lines 13-16 mimic Rails 'before_action' helper
   ['/users/*', "/items", "/items/*", "/carts/", "/placeorder/*"].each do |path|
     before path do
       redirect_if_not_logged_in
@@ -61,11 +61,9 @@ class ApplicationController < Sinatra::Base
 
     def authorized_cart_view?
       request = Cart.find_by(id: params[:id])
-      if request != nil && current_user.cart != request
+      if request == nil || current_user.cart != request
         flash[:message] = ["You can only see your own cart"]
         redirect to "/carts/#{current_user.cart.id}"
-      elsif request == nil
-        not_found                 # Renders a 404 error page
       end
     end
   end

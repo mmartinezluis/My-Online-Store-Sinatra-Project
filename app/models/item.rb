@@ -1,12 +1,17 @@
 class Item < ActiveRecord::Base
   validates_presence_of :name, :price
   belongs_to :user
+  enum status: [:listing, :purchased]
+
 
   include Slugifiable::Items                       #Not used in this project
   extend Slugifiable::ClassMethods                 #Not used in this project
-
+  
+  scope :display_listings_except_from, -> (user) { where("status = ? AND user_id != ?", :listing, user.id)}
+  # scope :display_listings_except_from, -> (user) { where("status == :status  AND user_id != :user", {status: :listing, user: user.id})}
+  
   def all_stock
-    self.user.items.where(name: self.name, status: "listing")
+    self.user.items.where(name: self.name, status: :listing)
   end
 
   def stock
@@ -14,7 +19,7 @@ class Item < ActiveRecord::Base
   end
 
   def quantity_purchased
-    self.user.items.where(name: self.name, status:"purchased").count              # Displays the current user's quantity of a given item that the user has purchased. This method is used in the '/users/show' view.
+    self.user.items.where(name: self.name, status: :purchased).count              # Displays the current user's quantity of a given item that the user has purchased. This method is used in the '/users/show' view.
   end
 
   def show_price
@@ -32,7 +37,7 @@ class Item < ActiveRecord::Base
   def add_items(stock)
     add = stock.to_i - self.stock 
     add.times {
-      new_item = Item.new(name: self.name, price: self.price, status: "listing")
+      new_item = Item.new(name: self.name, price: self.price, status: :listing)
       new_item.user = self.user
       new_item.save
     }
@@ -41,7 +46,7 @@ class Item < ActiveRecord::Base
   def subtract_items(stock)
     subtract = self.stock - stock.to_i
     subtract.times {
-      destroy_item = self.user.items.find_by(name: self.name, status: "listing")
+      destroy_item = self.user.items.find_by(name: self.name, status: :listing)
       destroy_item.delete
     }
   end

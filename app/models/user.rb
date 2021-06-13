@@ -14,11 +14,11 @@ class User < ActiveRecord::Base
   end
 
   def listings
-    listings = self.items.where(status: "listing").uniq { |i| i.name }
+    self.items.where(status: :listing).uniq { |i| i.name }
   end
 
   def purchases    
-    purchases = self.items.where(status: "purchased").uniq { |i| i.name }
+    self.items.where(status: :purchased).uniq { |i| i.name }
   end
 
   def self.all_users_listings
@@ -26,5 +26,9 @@ class User < ActiveRecord::Base
       user.listings
     end.flatten
   end  
+
+  def cart_size
+    self.cart.items.length
+  end
 
 end

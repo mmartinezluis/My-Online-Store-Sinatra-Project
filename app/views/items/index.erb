@@ -1,23 +1,16 @@
 <%= erb :'partials/error' %>
 <h1>Listings</h1>
 <section class="boxes" id="items-index">
-  <% User.all_users_listings.each do |item| %>
-    <div class="item-box" id="items-index-item-box">
-      <% if item.user == current_user %>
-        <div class="item-title">
-          <h1><%= item.name %></h1>
-        </div>
-        <span><%= item.show_price %><br></span>
-        <span>Seller: <%= item.user.username %><br></span>
-        <span>Stock: <%= item.stock %></span>
-      <% else %>
+  <% @items.each do |item| %>
+    <% if item.user != current_user %>
+      <div class="item-box" id="items-index-item-box">
         <div class="item-title">
           <h1><a href="/items/<%= item.id %>"><%= item.name %></a></h1>
         </div>
         <span><%= item.show_price %><br></span>
         <span>Seller: <%= item.user.username %><br></span>
         <span>Stock: <%= item.stock %></span>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   <% end %>
 </section>

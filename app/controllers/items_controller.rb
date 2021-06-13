@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
   # end
 
   get '/items' do
-    @items= Item.all
+    @items = User.all_users_listings
     erb :'items/index'
   end
 
@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
       @item.user = current_user
       @item.save
       @item.handle_stock(params[:stock])
+      flash[:message] = ["Listing successfully created"]
       redirect to "/items/#{@item.id}"
     end
   end
@@ -58,9 +59,10 @@ class ItemsController < ApplicationController
       item.price = params[:price]
       item.save
     end
-    @item = current_user.items.find_by(name: params[:name], status:"listing")
+    @item = current_user.items.find_by(name: params[:name], status: :listing)
     @item.handle_stock(params[:stock])
-    @item = current_user.items.find_by(name: params[:name], status:"listing")
+    @item = current_user.items.find_by(name: params[:name], status: :listing)
+    flash[:message] = ["Listing successfully updated"]
     redirect to "/items/#{@item.id}"
   end
 
@@ -70,6 +72,7 @@ class ItemsController < ApplicationController
     @item.all_stock.each do |item|
       item.delete
     end
+    flash[:message] = ["Listing successfully destroyed"]
     redirect to "/users/#{current_user.slug}"
   end
 
@@ -98,7 +101,7 @@ class ItemsController < ApplicationController
     end
 
     def item_already_exists?
-      current_user.items.find_by(name: params[:name], status: "listing")
+      current_user.items.find_by(name: params[:name], status: :listing)
     end    
   end
 

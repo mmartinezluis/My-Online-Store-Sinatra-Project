@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 5) do
     t.string "name"
     t.decimal "price", precision: 8, scale: 2
     t.integer "user_id"
-    t.string "status"
+    t.integer "status", default: 0
   end
 
   create_table "users", force: :cascade do |t|

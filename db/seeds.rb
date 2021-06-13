@@ -40,7 +40,7 @@ def create_items(array)
     item_hash.each do |key, value|
       s[key] = value
     end
-    s.status = "listing"
+    # s.status = "listing"
     s.save
   end
   condensed_cascade                
