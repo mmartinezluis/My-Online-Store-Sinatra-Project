@@ -27,14 +27,17 @@ class UsersController < ApplicationController
     @user = User.find_by_slug(params[:slug])
     erb :'users/show' 
   end
-      
-  get '/logout' do
-    if logged_in?
-      session.clear
-      redirect to '/login'
-    else
-      redirect to '/'
-    end
+
+  get '/all-my-listings' do
+    @user = current_user
+    erb :'users/listings'
   end
+
+  get '/purchases' do
+    @user = current_user
+    erb :'users/purchases'
+  end
+      
+
   
 end

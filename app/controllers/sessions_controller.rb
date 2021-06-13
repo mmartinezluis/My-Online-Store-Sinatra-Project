@@ -18,21 +18,14 @@ class SessionsController < ApplicationController
     end
   end
 
-  get '/all-my-listings' do
-    if !logged_in?
-      erb :'sessions/login'
+  get '/logout' do
+    if logged_in?
+      session.clear
+      redirect to '/login'
     else
-      @user = current_user
-      erb :'sessions/listings'
+      redirect to '/'
     end
   end
 
-  get '/purchases' do
-    if !logged_in?
-      erb :'sessions/login'
-    else
-      @user = current_user
-      erb :'sessions/purchases'
-    end
-  end
+
 end
