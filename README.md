@@ -21,6 +21,8 @@ SellBy has the potential for many more functionalities. Some planned future impr
 * Add a dashboard view that shows a graph for sells and purchases over time.
 * Add 'List' and 'Table' toggle buttons for switching the user's listings view and purchases view from list form to table form, and viceversa. 
 
+Video walkthrough on YouTube: https://www.youtube.com/watch?v=PpqJOsG78AU
+
 ## Set Up
 To run the app in your local machine follow the next steps:
 1. Fork this repository and clone it.
