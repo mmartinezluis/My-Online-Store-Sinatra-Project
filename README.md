@@ -25,16 +25,16 @@ SellBy has the potential for many more functionalities. Some planned future impr
 To run the app in your local machine follow the next steps:
 1. Fork this repository and clone it.
 2. Run `bundle install` to install gems.
-3. Run `db:migrate` to setup the database.
+3. Run `rake db:migrate` to setup the database.
 4. Run `shotgun` and open your browser at `http://localhost:9393` to run the app.
 
 ## Contributing
-Contributions and pull requests are welcomed. You can also create an issue to report a bug or make a request. For full request, you may follow these steps:
+Contributions and pull requests are welcomed. You can also create an issue to report a bug or make a request. For pull requests, you may follow these steps:
 1. Fork and clone the repository.
 2. Create a branch name denoting the feature or bug. For example: `git checkout -b feature/new-feature` or `git checkout -b bug/bug-fix`.
-3. Write your code and submit changes with an clear commit message.
+3. Write your code and submit changes with a clear commit message.
 4. Push to the branch with `git push origin feature/new-feature`. 
-5. Create a pull request, and explain the reason for the change (why the written code should be implemented).
+5. Create a pull request, and explain the reason for the requested change (why the written code should be implemented).
 
 ## License
 SellBy Online Store is available as open source under the temrs of the [MIT License](https://github.com/mmartinezluis/SellBy-Online-Store-Sinatra-Project/blob/main/LICENSE.txt). 
