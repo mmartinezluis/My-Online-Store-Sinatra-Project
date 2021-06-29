@@ -23,7 +23,7 @@ class Cart < ActiveRecord::Base
   end
 
   def purchase
-    # Debit the buyer and pay the seller(s)
+    # 'handle_funds'--> Debit the buyer and pay the seller(s)
     handle_funds
     # Find the seller items to be purchased and assign those items' user_id to the buyer's user_id
     self.uniq_items.each do |item|                                            
