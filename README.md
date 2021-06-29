@@ -1,4 +1,4 @@
-# SellBy Online Store Sinatra Project
+# SellBy Online Store 
 SellBy is a Sinatra-based ruby app designed using the MVC (models, views, controllers) framework implementing RESTFful routes and covering the full CRUD cycle. 
 
 In SellBy users have the ability to:
@@ -12,8 +12,8 @@ In SellBy users have the ability to:
 * Create listings to sell items to other users.
 * Edit or delete their listings.
 * Earn funds from sells.
-* Check a list of all his/her listings.
-* Check a list of all his/her purchases.
+* Check a list of all their listings.
+* Check a list of all their purchases.
 
 SellBy has the potential for many more functionalities. Some planned future improvements include:
 * Add a Transaction model.
@@ -36,5 +36,5 @@ Contributions and pull requests are welcomed. You can also create an issue to re
 4. Push to the branch with `git push origin feature/new-feature`. 
 5. Create a pull request, and explain the reason for the change (why the written code should be implemented).
 
-## Licence
-SellBy Online Store is available as open source under the temrs of the MIT license. 
+## License
+SellBy Online Store is available as open source under the temrs of the [MIT License](https://github.com/mmartinezluis/SellBy-Online-Store-Sinatra-Project/blob/main/LICENSE.txt). 
