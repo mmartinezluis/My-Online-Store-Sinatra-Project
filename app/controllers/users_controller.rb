@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   get '/signup' do
     if !logged_in?
       erb :'users/signup'
@@ -7,6 +8,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # Creating a new user
   post '/signup' do
     @user= User.new(:username => params[:username], :email => params[:email], :password => params[:password])
     if @user.valid?
@@ -16,14 +18,13 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect to '/items'
     else
-      #flash[:message] = ["All fields mus be completed"] 
       flash[:message] = @user.errors.full_messages
       redirect to '/signup'
     end
   end
 
   get '/users/:slug' do
-    authorized_user_view?
+    authorized_user_view?                    # Defined in application controller
     @user = User.find_by_slug(params[:slug])
     erb :'users/show' 
   end
@@ -38,6 +39,4 @@ class UsersController < ApplicationController
     erb :'users/purchases'
   end
       
-
-  
 end

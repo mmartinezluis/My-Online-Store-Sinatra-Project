@@ -1,16 +1,18 @@
 class ItemsController < ApplicationController
 
-  
+  # Index action
   get '/items' do
     @items = User.all_users_listings
     erb :'items/index'
   end
 
+  # New action
   get '/items/new' do
     @item= Item.new
     erb :'items/new'
   end
 
+  # Create action
   post '/items' do                                                                                            #Third, if the stock if out of range, reload the form (incalid stock input)
     no_empty_params?                                                                                           #It might be that the user is putting info for a listing that already exiists in the user's listings                                                                               
     valid_stock?                                                                                             #First, check whether the user is logged in; if not, redirect to login                                                                                              
@@ -27,6 +29,7 @@ class ItemsController < ApplicationController
     end
   end
 
+  # Show action
   get '/items/:id' do
     @item = Item.find_by(id: params[:id])
     if @item
@@ -37,12 +40,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  # Edit action
   get '/items/:id/edit' do
     authorized_item_view?
     @item= Item.find(params[:id])
     erb :'items/edit_item'
   end
 
+  # Update action
   #THe logic here is a little bit complex; if a user wants to edit a listing, the the appplication has to find all of the instances of the corresponding                       
   # (cont.) item in that listing, change the attributes of those instances using the user's params, and then make copies or delete copies of those instances if the params stock is greater or lower than the original stock.                           
   patch '/items/:id' do                                                             
@@ -61,6 +66,7 @@ class ItemsController < ApplicationController
     redirect to "/items/#{@item.id}"
   end
 
+  # Delete action
   delete '/items/:id' do
     authorized_item_view?
     @item = Item.find(params[:id])

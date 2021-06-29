@@ -10,6 +10,7 @@ class CartsController < ApplicationController
     redirect to "carts/#{@cart.id}"
   end
 
+  # Show action
   get '/carts/:id' do
     authorized_cart_view?                 # Defined in applciation controller
     @cart= Cart.find(params[:id])
@@ -42,6 +43,7 @@ class CartsController < ApplicationController
     end
   end
 
+  # Placing an order using the cart's id; ids are unique and belong to a user
   post '/placeorder/:id' do
     @user = current_user
     @cart = Cart.find(params[:id])
@@ -63,6 +65,7 @@ class CartsController < ApplicationController
     end
   end
 
+  # Delete action for cart
   delete '/carts/:id' do
     cart = current_user.cart
     item= cart.items.find { |i| i.id == params[:id].to_i }

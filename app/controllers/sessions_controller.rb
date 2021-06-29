@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  
   get '/login' do
     if !logged_in?
       erb :'sessions/login'
