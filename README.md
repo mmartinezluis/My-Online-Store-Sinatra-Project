@@ -37,4 +37,4 @@ Contributions and pull requests are welcomed. You can also create an issue to re
 5. Create a pull request, and explain the reason for the requested change (why the written code should be implemented).
 
 ## License
-SellBy Online Store is available as open source under the temrs of the [MIT License](https://github.com/mmartinezluis/SellBy-Online-Store-Sinatra-Project/blob/main/LICENSE.txt). 
+SellBy Online Store is available as open source under the terms of the [MIT License](https://github.com/mmartinezluis/SellBy-Online-Store-Sinatra-Project/blob/main/LICENSE.txt). 
