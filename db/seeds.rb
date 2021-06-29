@@ -1,3 +1,5 @@
+
+
 users_list = [ 
     {:username => "Juan", :email => "juan@hotmail.com", :password => "juan"},
     {:username => "Rose", :email => "rose@hotmail.com", :password => "rose"},
@@ -23,10 +25,6 @@ def create_users(array)
   array.each do |user_hash|
     q= User.new
     user_hash.each {|attribute, value| q.send(("#{attribute}="), value)}        # This method can effectively handle the "password" key and "password_digest" key conflict between the Users hash and the ActiveRecord's has_secure_password macro.
-    #user_hash.each do |key, value|        # This method does not work due to conflict between the "password" key from the Users hash and the "password_digest" key from the ActiveRecord has_secure_password macro.
-      #puts "#{key}: #{value}"
-      #q[key] = value
-    #end
     q.funds = 100.00
     q.cart = Cart.new
     q.save
@@ -36,11 +34,9 @@ end
 def create_items(array)
   array.each do |item_hash|
     s = Item.new
-    #item_hash.each {|attribute, value| s.send(("#{attribute}="), value)}       # This method works as well
     item_hash.each do |key, value|
       s[key] = value
     end
-    # s.status = "listing"
     s.save
   end
   condensed_cascade                
