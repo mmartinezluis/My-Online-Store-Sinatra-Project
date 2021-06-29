@@ -1,11 +1,6 @@
 class ItemsController < ApplicationController
-  #before_action :require_login                                     <---------- implement
-  #skip_before_action :require_login, only: [:index]
-  
-  # def require_login                                               <--------- implement
-  #   return head(:forbidden) unless session.include? :user_id
-  # end
 
+  
   get '/items' do
     @items = User.all_users_listings
     erb :'items/index'
