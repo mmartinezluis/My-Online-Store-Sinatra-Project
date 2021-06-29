@@ -26,6 +26,7 @@
   #items-index .item-box {
     border: 1px solid rgba(0,0,0,.125);
     padding: 1.25rem 0.5rem;
+    min-width: 15rem;
   }
 
 
