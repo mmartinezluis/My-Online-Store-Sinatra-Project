@@ -3,7 +3,6 @@ class Item < ActiveRecord::Base
   belongs_to :user
   enum status: [:listing, :purchased]
 
-
   include Slugifiable::Items                       #Not used in this project
   extend Slugifiable::ClassMethods                 #Not used in this project
   

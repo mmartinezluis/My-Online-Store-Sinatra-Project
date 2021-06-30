@@ -16,12 +16,20 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get '/' do 
-    erb :index
+  get '/' do
+    if logged_in?
+      redirect to '/items' 
+    else
+      erb :index
+    end
   end
 
   get '/index' do
-    erb :index
+    if logged_in?
+      redirect to '/items'
+    else
+      erb :index
+    end
   end
 
   # Application wide helpers
