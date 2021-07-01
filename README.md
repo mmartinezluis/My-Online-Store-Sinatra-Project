@@ -1,5 +1,5 @@
 # SellBy Online Store 
-SellBy is a Sinatra-based ruby app designed using the MVC (models, views, controllers) framework, implementing RESTFful routes and covering the full CRUD cycle. This is my second milestone project at Flatiron's software engineering program.
+SellBy is a Sinatra-based ruby app designed using the MVC (models, views, controllers) framework, implementing RESTFful routes and covering the full CRUD cycle. This is my second milestone project at Flatiron's software engineering program. You can find a Medium article for SellBy [here](https://luis-mmartinez.medium.com/building-an-online-store-79708e5a71c6).
 
 In SellBy users have the ability to:
 * Login or create a new user account.
